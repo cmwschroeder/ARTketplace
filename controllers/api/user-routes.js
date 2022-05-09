@@ -7,7 +7,6 @@ router.post('/', async (req, res) => {
         //create a user instance in the database
         const userData = await User.create({
             name: req.body.username,
-            email: req.body.email,
             password: req.body.password,
         });
 
@@ -28,19 +27,19 @@ router.post('/', async (req, res) => {
 //route that handles login
 router.post('/login', async (req, res) => {
     try{
-        //get the user that matches the email we recieved
-        const userData = await User.findOne({where: { email: req.body.email}});
+        //get the user that matches the username we recieved
+        const userData = await User.findOne({where: { name: req.body.username}});
     
         //send a response back if the user doesn't exist in the database
         if(!userData) {
-            res.status(400).json("Incorrect email or password, please try again");
+            res.status(400).json("Incorrect username or password, please try again");
             return;
         }
 
         const validPassword = userData.checkPassword(req.body.password);
         //now that we have the number we need to check the password
         if(!validPassword) {
-            res.status(404).json("Incorrect email or password, please try again");
+            res.status(404).json("Incorrect username or password, please try again");
             return;
         }
     
