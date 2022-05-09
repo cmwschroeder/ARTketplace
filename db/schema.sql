@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS artket_db;
+
+CREATE DATABASE artket_db;
