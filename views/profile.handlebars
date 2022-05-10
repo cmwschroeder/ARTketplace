@@ -1,0 +1,26 @@
+<div class="w-full h-full flex flex-row flex-wrap justify-around">
+    <div class="w-full text-center">
+        <p class="text-5xl text-accent mt-3">My Profile</p>
+    </div>
+    <div class="w-full mx-3 mt-10 mb-3 flex flex-row justify-around">
+        <button class="btn btn-primary m-2 w-2/5">View Art Pieces</button>
+        <button class="btn btn-accent m-2 w-2/5">View Collections</button>
+    </div>
+    <div class="hidden">
+        {{#each artPieces as |artPiece|}}
+        <div class="card w-96 bg-base-100 shadow-xl m-3">
+            <figure><img class="h-48" src={{artPiece.image}} alt="Art" /></figure>
+            <div class="card-body">
+                <div class="w-full text-center">
+                    <p class="text-3xl">${{artPiece.price}}</p>
+                </div>
+                <h2 class="card-title">{{artPiece.title}}</h2>
+                <p>{{artPiece.description}}</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-secondary">Edit</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
