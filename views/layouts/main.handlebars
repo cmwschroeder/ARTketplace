@@ -11,12 +11,19 @@
 <body>
     <div class="navbar bg-base-100">
   <div class="flex-1">
-    <a class="btn btn-ghost normal-case text-xl text-asset">ARTketplace</a>
+    <a class="btn btn-ghost normal-case text-xl text-accent">ARTketplace</a>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal p-0">
-      <li><a>Login</a></li>
-      <li><a>Collections</a></li>
+        {{#if loggedIn}}
+        <li><a href="/">My Profile</a></li>
+        <li><a href="/">Collections</a></li>
+        <li><a id="logout-button">Logout</a></li>
+        {{else}}
+        <li><a href="/login">My Profile</a></li>
+        <li><a href="/login">Collections</a></li>
+        <li><a href="/login">Login</a></li>
+        {{/if}}
     </ul>
   </div>
 </div>
