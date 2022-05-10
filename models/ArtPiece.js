@@ -37,9 +37,13 @@ ArtPiece.init(
             key: "id"
         }
     },
-    isForSale: {
+    is_for_sale: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    price:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
     }
   },
   {
