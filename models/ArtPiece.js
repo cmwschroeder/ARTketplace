@@ -36,6 +36,10 @@ ArtPiece.init(
             model: "collection",
             key: "id"
         }
+    },
+    isForSale: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {
