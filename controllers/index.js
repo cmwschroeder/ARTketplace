@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const apiRoutes = require('./api');
 const homeRoutes = require('./home-routes.js');
-const collectionRoutes = require('./collection-routes.js');
+const collectionRoutes = require('./collections-routes');
 const profileRoutes = require('./profile-routes.js')
 
 
