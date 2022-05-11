@@ -7,27 +7,27 @@ const {
 
 router.get('/', async (req, res) => {
     ArtPiece.findAll({
-        attributes: ['title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
-        include: [{
-            model: Collection,
-            attributes: ['id', 'title', 'user_id'],
-            include: {
-                model: User,
-                attributes: ['id', 'name']
-            }
-        },
-        {
-            model: User,
-            attributes: ['id', 'name']
-        }
-        ]
-    })
+            attributes: ['title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
+            include: [{
+                    model: Collection,
+                    attributes: ['id', 'title', 'user_id'],
+                    include: {
+                        model: User,
+                        attributes: ['id', 'name']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['id', 'name']
+                }
+            ]
+        })
         .then(artPiecesData => {
             const artPosts = artPiecesData.map(artPiece => artPiece.get({
                 plain: true
             }));
             res.render('homePage', {
-                artPieces: artPosts,
+                artPosts,
                 loggedIn: req.session.loggedIn
             })
         })
@@ -49,31 +49,34 @@ router.get('/login', async (req, res) => {
 
 router.get('/art/:id', async (req, res) => {
     ArtPiece.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: ['title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
-        includes: [
-            {
-                model: Collection,
-                attributes: ['id', 'title', 'user_id'],
-                includes: {
+            where: {
+                id: req.params.id
+            },
+            attributes: ['title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
+            includes: [{
+                    model: Collection,
+                    attributes: ['id', 'title', 'user_id'],
+                    includes: {
+                        model: User,
+                        attributes: ['id', 'name']
+                    }
+                },
+                {
                     model: User,
                     attributes: ['id', 'name']
                 }
-            },
-            {
-                model: User,
-                attributes: ['id', 'name']
-            }
-        ]
-    })
+            ]
+        })
         .then(artPiecesData => {
             if (!artPiecesData) {
-                res.status(404).json({ message: 'No posts found with this id' });
+                res.status(404).json({
+                    message: 'No posts found with this id'
+                });
                 return;
             }
-            const artPiece = artPiecesData.get({ plain: true });
+            const artPiece = artPiecesData.get({
+                plain: true
+            });
 
             res.render('', {
 
