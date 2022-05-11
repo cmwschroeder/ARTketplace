@@ -1,0 +1,33 @@
+{{! theArtworks => ArtPiece, User, Collection }}
+{{! theCollections => Collection, ArtPiece }}
+
+{{#each theCollections as |colecs|}}
+  <div
+    class="card w-96 bg-primary text-primary-content"
+    style="margin-bottom: 2vw;"
+  >
+    <div class="card-body">
+      <h2 class="card-title">{{{colecs.title}}}</h2>
+
+        {{!-- {{#each colecs.artPiece as |art|}}
+        <h3>{{{art.title}}}</h3>
+        {{/each}} --}}
+
+      {{!-- <div>
+        {{#each theCollections as |colecs|}}
+          <div>
+            <img src="{{{colecs.artPiece.image}}}" alt="Image" />
+            <h3>{{{colecs.artPiece.title}}}</h3>
+          </div>
+        {{/each}}
+      </div> --}}
+
+    </div>
+  </div>
+
+{{/each}}
+
+
+ {{#each theArtworks as |art|}}
+        <h3>{{{art.title}}}</h3>
+        {{/each}}
