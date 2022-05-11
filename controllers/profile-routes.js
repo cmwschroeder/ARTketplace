@@ -13,23 +13,46 @@ router.get('/', async (req, res) => {
         artPieces: artPieces,
         userId: 1, //req.session.userId
     });
-})
+});
+
+router.get('/artpiece/', async (req, res) => {
+    const collectionData = await Collection.findAll({
+        where: {user_id: 1} //where: {user_id: req.session.userId}
+    });
+
+    const collections = collectionData.map((collection) => collection.get({ plain: true}));
+
+    var areCollections = false;
+    if(collections.length > 0) {
+        areCollections = true;
+    }
+
+    res.render('userArt', {
+        loggedIn: req.session.loggedIn,
+        collections: collections,
+        areCollections: areCollections,
+        newArt: true,
+    });
+});
+
 router.get('/artpiece/:id', async (req, res) => {
 
-})
+});
+
 
 router.post('/artpiece', async (req, res) => {
 
-})
+});
 
 router.put('/artpiece/:id', async (req, res) => {
 
 
-})
+});
+
 router.delete('/artpiece/:id', async (req, res) => {
 
     
-})
+});
 
 
 
