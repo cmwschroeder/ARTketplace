@@ -88,8 +88,6 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
-<<<<<<< HEAD
-=======
 
 router.delete('/:id',(req, res) =>{
     Collection.destroy({
@@ -106,7 +104,6 @@ router.delete('/:id',(req, res) =>{
     })
 
 })
->>>>>>> 4860948 (update collection route with)
 
 router.delete('/:id',(req, res) =>{
     Collection.destroy({
