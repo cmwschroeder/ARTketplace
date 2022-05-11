@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
                 plain: true
             }));
             res.render('homePage', {
-                artPosts,
+                artPieces: artPosts,
                 loggedIn: req.session.loggedIn
             })
         })
