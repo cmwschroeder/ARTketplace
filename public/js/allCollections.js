@@ -6,20 +6,32 @@ async function displayCollections() {
   const collections = await response.json();
   console.log(collections);
 
-  var outputString = `<div class="carousel rounded-box">`
+  var outputString = ``
   var generatedString = ""
   
   for(let i=0; i<collections.length; i++) {
     generatedString += `
+    <h1 class="card-title ml-4 text-accent">${collections[i].title}</h1>
+    <div class="carousel rounded-box">
     <div  style="margin-bottom: 2vw; background-color: black">
     <div class="card-body">
-      <h2 class="card-title">${collections[i].title}</h2>
+      
       <div class="owl-carousel owl-theme">`
 
       for(let x=0; x<collections[i].artPieces.length; x++) {
         generatedString += `
+        
+        
         <div class="item">
-            <img src="${collections[i].artPieces[x].image}" alt="Image" />
+        <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><img class="h-64" src="${collections[i].artPieces[x].image}" alt="Image" /></figure>
+        <div class="card-body">
+            <h2 class="card-title">${collections[i].artPieces[x].title}</h2>
+            <p class="text-accent">${collections[i].artPieces[x].description}</p>
+            <h1>$${collections[i].artPieces[x].price}</h1>
+            
+        </div>
+        </div>
         </div> 
         `
       }
@@ -40,8 +52,12 @@ async function displayCollections() {
   
   $('.owl-carousel').owlCarousel({
     loop:true,
-    margin:10,
-    nav:true,
+    margin:50,
+    nav:false,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    stagePadding: 0,
     responsive:{
         0:{
             items:1
@@ -50,7 +66,7 @@ async function displayCollections() {
             items:3
         },
         1000:{
-            items:5
+            items:3
         }
     }
 })
