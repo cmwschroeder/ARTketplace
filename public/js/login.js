@@ -3,6 +3,7 @@ const signupForm = document.querySelector("#signup-form");
 const signupBtn = document.querySelector("#create-btn");
 const loginBtn = document.querySelector("#login-btn");
 
+
 signupBtn.addEventListener("click", (event) => {
     loginForm.classList.add("hidden");
     loginForm.classList.remove("flex");
@@ -19,5 +20,55 @@ loginBtn.addEventListener("click", (event) => {
     loginForm.classList.add("flex");
 
     console.log("Function Ran!");
-    
+
 })
+
+const loginFormHandler = async (event) => {
+    event.preventDefault();
+  
+    const username = document.querySelector("#username-login").value.trim();
+    const password = document.querySelector("#password-login").value.trim();
+  
+    if (username && password) {
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        alert(response.statusText);
+      }
+    }
+  };
+
+  const signupFormHandler = async (event) => {
+    event.preventDefault();
+  
+    const username = document.querySelector("#username-signup").value.trim();
+    const password = document.querySelector("#password-signup").value.trim();
+  
+    if (username && password) {
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        body: JSON.stringify({ username, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+  
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        alert(response.statusText);
+      }
+    }
+  };
+
+document
+  .querySelector('#main-login-btn')
+  .addEventListener('click', loginFormHandler);
+
+document
+  .querySelector('#main-create-btn')
+  .addEventListener('click', signupFormHandler);
