@@ -124,7 +124,5 @@ router.delete('/:id',(req, res) =>{
         }
         res.json(collectionDbData)
     })
-
 })
-
 module.exports = router;
