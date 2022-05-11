@@ -1,0 +1,86 @@
+<div class="w-full h-full flex justify-center">
+    <div class="card w-3/4 bg-base-100 shadow-xl my-6">
+        <div class="card-body w-full">
+            <h2 class="card-title mx-auto text-4xl">Add Piece</h2>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Title</span>
+                </label>
+                <label class="input-group">
+                    <span class="hidden lg:flex lg:w-1/6">Title</span>
+                    <input type="text" placeholder="Title" class="input input-bordered w-full lg:w-11/12" />
+                </label>
+            </div>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Description</span>
+                </label>
+                <label class="input-group">
+                    <textarea class="textarea textarea-bordered h-48 w-full" placeholder="Art description"></textarea>
+                </label>
+            </div>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Image Link</span>
+                </label>
+                <p class="mb-3">Enter a .png or a .jpg link to the image you would like to put up</p>
+                <label class="input-group">
+                    <span class="hidden lg:flex lg:w-1/6">Link</span>
+                    <input type="text" placeholder="image.jpg" class="input input-bordered w-full lg:w-11/12" />
+                </label>
+            </div>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Enter amount</span>
+                </label>
+                <label class="input-group">
+                    <span class="hidden lg:flex lg:w-1/6">Price</span>
+                    <input type="text" placeholder="50" class="input input-bordered w-full lg:w-10/12" />
+                    <span class="hidden lg:flex lg:w-1/12">USD</span>
+                </label>
+            </div>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Choose Collection to Add to:</span>
+                </label>
+                <p class="mb-3">Or choose no collection to create new collection/be a standalone art piece</p>
+                <select class="select select-bordered w-full">
+                    <option>No Collection</option>
+                    {{#each collections as |collection|}}
+                    <option data-number={{collection.id}}>{{collection.title}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="divider w-5/6 mx-auto">OR</div>
+
+            <div class="form-control w-5/6 mx-auto">
+                <label class="label">
+                    <span class="label-text text-2xl">Create New Collection:</span>
+                </label>
+                <p class="mb-3">Or leave blank to add to older collection/be a standalone art piece</p>
+                <label class="input-group">
+                    <span class="hidden lg:flex lg:w-1/6">Collection</span>
+                    <input type="text" placeholder="New Collection Name"
+                        class="input input-bordered w-full lg:w-10/12" />
+                </label>
+            </div>
+
+            <div class="form-control w-1/4 mx-auto my-5">
+                <label class="label cursor-pointer">
+                    <span class="label-text text-2xl">Put up for sale</span>
+                    <input type="checkbox" checked="checked" class="checkbox" />
+                </label>
+            </div>
+
+            <div class="card-actions justify-center my-3">
+                <button class="btn btn-accent w-1/2">Add to List of Art</button>
+            </div>
+        </div>
+    </div>
+</div>
