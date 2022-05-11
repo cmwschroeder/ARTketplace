@@ -9,7 +9,7 @@
                 </label>
                 <label class="input-group">
                     <span class="hidden lg:flex lg:w-1/6">Title</span>
-                    <input type="text" placeholder="Title" class="input input-bordered w-full lg:w-11/12" />
+                    <input type="text" placeholder="Title" class="input input-bordered w-full lg:w-11/12" id="title"/>
                 </label>
             </div>
 
@@ -18,7 +18,7 @@
                     <span class="label-text text-2xl">Description</span>
                 </label>
                 <label class="input-group">
-                    <textarea class="textarea textarea-bordered h-48 w-full" placeholder="Art description"></textarea>
+                    <textarea class="textarea textarea-bordered h-48 w-full" placeholder="Art description" id="description"></textarea>
                 </label>
             </div>
 
@@ -29,7 +29,7 @@
                 <p class="mb-3">Enter a .png or a .jpg link to the image you would like to put up</p>
                 <label class="input-group">
                     <span class="hidden lg:flex lg:w-1/6">Link</span>
-                    <input type="text" placeholder="image.jpg" class="input input-bordered w-full lg:w-11/12" />
+                    <input type="text" placeholder="image.jpg" class="input input-bordered w-full lg:w-11/12" id="image-link"/>
                 </label>
             </div>
 
@@ -39,7 +39,7 @@
                 </label>
                 <label class="input-group">
                     <span class="hidden lg:flex lg:w-1/6">Price</span>
-                    <input type="text" placeholder="50" class="input input-bordered w-full lg:w-10/12" />
+                    <input type="text" placeholder="50" class="input input-bordered w-full lg:w-10/12" id="price"/>
                     <span class="hidden lg:flex lg:w-1/12">USD</span>
                 </label>
             </div>
@@ -49,7 +49,7 @@
                     <span class="label-text text-2xl">Choose Collection to Add to:</span>
                 </label>
                 <p class="mb-3">Or choose no collection to create new collection/be a standalone art piece</p>
-                <select class="select select-bordered w-full">
+                <select class="select select-bordered w-full" id="which-collection">
                     <option>No Collection</option>
                     {{#each collections as |collection|}}
                     <option data-number={{collection.id}}>{{collection.title}}</option>
@@ -67,20 +67,22 @@
                 <label class="input-group">
                     <span class="hidden lg:flex lg:w-1/6">Collection</span>
                     <input type="text" placeholder="New Collection Name"
-                        class="input input-bordered w-full lg:w-10/12" />
+                        class="input input-bordered w-full lg:w-10/12" id="new-collection"/>
                 </label>
             </div>
 
             <div class="form-control w-1/4 mx-auto my-5">
                 <label class="label cursor-pointer">
                     <span class="label-text text-2xl">Put up for sale</span>
-                    <input type="checkbox" checked="checked" class="checkbox" />
+                    <input type="checkbox" checked="checked" class="checkbox" id="for-sale"/>
                 </label>
             </div>
 
             <div class="card-actions justify-center my-3">
-                <button class="btn btn-accent w-1/2">Add to List of Art</button>
+                <button class="btn btn-accent w-1/2" id="add-art">Add to List of Art</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="/js/userArt.js"></script>
