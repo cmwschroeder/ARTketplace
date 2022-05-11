@@ -62,13 +62,23 @@ const showCollections = async (event) => {
             var cardBody = document.createElement('div');
             cardBody.classList.add('card-body');
 
-            //create a div that will hold the price in the center
+            //create a div that will hold the price and whether if is for sale in the center
             var priceDiv = document.createElement('div');
             priceDiv.classList.add('w-full', 'text-center');
             var priceTextEl = document.createElement('p');
             priceTextEl.classList.add('text-3xl');
             priceTextEl.textContent = "$" + collections[i].artPieces[j].price;
+            var forSaleEl = document.createElement('p');
+            forSaleEl.classList.add('text-xl');
+            //set text depending on whether it is up for sale or not
+            if(collections[i].artPieces[j].is_for_sale) {
+                forSaleEl.textContent = 'Up for sale';
+            }
+            else {
+                forSaleEl.textContent = 'Not up for sale';
+            }
             priceDiv.appendChild(priceTextEl);
+            priceDiv.appendChild(forSaleEl);
 
             //create title and description text elements
             var artTitleEl = document.createElement('h2');

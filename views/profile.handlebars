@@ -17,6 +17,11 @@
             <div class="card-body">
                 <div class="w-full text-center">
                     <p class="text-3xl">${{artPiece.price}}</p>
+                    {{#if artPiece.is_for_sale}}
+                    <p class="text-xl">Up for sale</p>
+                    {{else}}
+                    <p class="text-xl">Not up for sale</p>
+                    {{/if}}
                 </div>
                 <h2 class="card-title">{{artPiece.title}}</h2>
                 <p>{{artPiece.description}}</p>
