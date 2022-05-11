@@ -1,15 +1,16 @@
 {{! theArtworks => ArtPiece, User, Collection }}
 {{! theCollections => Collection, ArtPiece }}
 
-{{#each theCollections as |colecs|}}
-  <div
-    class="card w-96 bg-primary text-primary-content"
-    style="margin-bottom: 2vw;"
-  >
+{{!-- {{#each theCollections as |colecs|}}
+  <div class="card w-96 bg-primary text-primary-content" style="margin-bottom: 2vw;">
     <div class="card-body">
-      <h2 class="card-title">{{{colecs.title}}}</h2>
+      <h2 class="card-title">{{{colecs.title}}}</h2> --}}
 
-        {{!-- {{#each colecs.artPiece as |art|}}
+    <div id="addCarouselHere">
+
+    </div>
+
+      {{!-- {{#each colecs.artPiece as |art|}}
         <h3>{{{art.title}}}</h3>
         {{/each}} --}}
 
@@ -22,12 +23,14 @@
         {{/each}}
       </div> --}}
 
-    </div>
+    {{!-- </div>
   </div>
 
-{{/each}}
+{{/each}} --}}
 
+{{!-- {{#each theArtworks as |art|}}
+  <h3>{{{art.title}}}</h3>
+  <img src="{{{art.image}}}">
+{{/each}} --}}
 
- {{#each theArtworks as |art|}}
-        <h3>{{{art.title}}}</h3>
-        {{/each}}
+<script src="/js/allCollections.js"></script>

@@ -21,9 +21,6 @@ router.get('/', async (req, res) => {
         res.status(500);
     }
 
-        
-
-
 });
 
 router.get('/:id', async (req, res) => {
