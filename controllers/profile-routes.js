@@ -24,29 +24,36 @@ router.get('/artpiece/', async (req, res) => {
 
     const collections = collectionData.map((collection) => collection.get({ plain: true}));
 
-    var areCollections = false;
-    if(collections.length > 0) {
-        areCollections = true;
-    }
-
     res.render('userArt', {
         loggedIn: req.session.loggedIn,
         collections: collections,
-        areCollections: areCollections,
         newArt: true,
     });
 });
 
 router.get('/artpiece/:id', async (req, res) => {
-    
+    const collectionData = await Collection.findAll({
+        where: {user_id: req.session.userId}
+    });
+
+    const collections = collectionData.map((collection) => collection.get({ plain: true}));
+
+    const artData = await ArtPiece.findByPk(req.params.id);
+
+    const artPiece = artData.get({ plain: true });
+
+    res.render('userArt', {
+        loggedIn: req.session.loggedIn,
+        collections: collections,
+        newArt: true,
+        artPiece: artPiece,
+    });
 });
 
 
 router.post('/artpiece', async (req, res) => {
     try {
         if(req.body.hasCollection) {
-            console.log(req.body);
-
             const collectionData = await Collection.findAll({
                 where: {user_id: req.session.userId}
             });
