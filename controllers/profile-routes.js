@@ -38,7 +38,19 @@ router.get('/artpiece/', async (req, res) => {
 });
 
 router.get('/artpiece/:id', async (req, res) => {
-
+    try {
+        const artData = await ArtPiece.create({
+            title: req.body.title,
+            description: req.body.description,
+            title: req.body.title,
+            user_id: req.session.userId,
+            image: req.body.image,
+            is_for_sale: req.body.forSale,
+            price: req.body.price,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 

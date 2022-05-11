@@ -25,10 +25,24 @@ const addArt = async (req,res) => {
     const price = priceEl.value;
     const forSale = forSaleEl.checked;
 
+
+    var hasCollection = false;
+    var collection;
+
     if(title && description && imageLink && price) {
+        if(newCollection) {
+            hasCollection = true;
+            collection = newCollection;
+        } else if (whichCollection != "No Collection") {
+            hasCollection = true;
+            collection = whichCollection;
+        } else {
+            collection = "";
+        }
+
         const response = await fetch('/profile/artpiece', {
             method: 'POST',
-            body: JSON.stringify({ title, description, imageLink, price, forSale }),
+            body: JSON.stringify({ title, description, imageLink, price, forSale, hasCollection, collection }),
             headers: { 'Content-Type': 'application/json' },
         });
 
