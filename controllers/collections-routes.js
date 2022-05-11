@@ -88,6 +88,25 @@ router.put('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+<<<<<<< HEAD
+=======
+
+router.delete('/:id',(req, res) =>{
+    Collection.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(collectionDbData => {
+        if (!collectionDbData) {
+            res.status(404).json({ message: 'No collection found with this id'});
+            return;
+        }
+        res.json(collectionDbData)
+    })
+
+})
+>>>>>>> 4860948 (update collection route with)
 
 router.delete('/:id',(req, res) =>{
     Collection.destroy({
