@@ -1,4 +1,4 @@
-<div class="w-full flex justify-center">
+<div id='login-form'class="w-full flex justify-center mt-50">
     <div class="card w-96 bg-base-100 shadow-xl flex justify-center">
         <div class="card-body">
             <h2 class="card-title">Login</h2>
@@ -14,14 +14,15 @@
                 </label>
                 <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
             </div>
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-between">
+                <button id ='create-btn'class="btn btn-secondary">Create Account</button>
                 <button class="btn btn-primary">Login</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="w-full flex justify-center hidden">
+<div id ='signup-form'class="w-full justify-center hidden mt-50">
     <div class="card w-96 bg-base-100 shadow-xl">
         <div class="card-body">
             <h2 class="card-title">Sign-Up</h2>
@@ -33,16 +34,23 @@
             </div>
             <div class="form-control w-full max-w-xs">
                 <label class="label">
+                <span class="label-text">Password</span>
+                </label>
+                <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+            </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label">
                 <span class="label-text"> Re-enter Password</span>
                 </label>
                 <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
             </div>
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-between">
+                <button id="login-btn" class="btn btn-secondary">Login</button>
                 <button class="btn btn-primary">Create Account</button>
             </div>
         </div>
     </div>
 </div>
 
-
+<script src = "/js/login.js"></script>
 
