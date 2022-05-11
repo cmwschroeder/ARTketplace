@@ -1,3 +1,4 @@
+//references to sections we will hide and show based on what buttons are clicked
 const artSection = document.querySelector("#art-section");
 const collectionSection = document.querySelector("#collection-section");
 
@@ -6,20 +7,30 @@ const artButton = document.querySelector("#art-button");
 const addButton = document.querySelector("#add-button");
 const collectionButton = document.querySelector("#collection-button");
 
+//This function will fetch all collections owned by the user and add all art pieces to the sections
+//fore each collection, dynamically creates HTML
 const showCollections = async (event) => {
+    //give the button clicked a loading animation while we make fetch requests
+    collectionButton.classList.add('loading');
+
+    //Hides the art section if it isn't hidden
     if(!artSection.classList.contains('hidden')) {
         artSection.classList.add("hidden");
     }
+    //Shows the collection section if it is hidden
     if(collectionSection.classList.contains('hidden')) {
         collectionSection.classList.remove("hidden");
     }
 
+    //Get the user id that we will use to fetch the collections this user owns
     const userId = collectionButton.getAttribute("data-user");
     
+    //Fetch the collections from the user
     const response = await fetch('/api/collections/user/' + userId, {
         method: 'GET',
     }); 
 
+    //Turn response into object we can parse
     const collections = await response.json();
 
     //clear the inner html of collection section in case this isn't the first time we've hit the button
@@ -85,11 +96,23 @@ const showCollections = async (event) => {
 
             currCollection.appendChild(cardDiv);
         };
+
+        //insert a divider between collections but not after last collection
+        if(i != (collections.length - 1)) {
+            var dividerEl = document.createElement('div');
+            dividerEl.classList.add('divider', 'w-full');
+            currCollection.appendChild(dividerEl);
+        }
     };
+
+    //remove loading animation from button
+    collectionButton.classList.remove('loading');
 };
 
 collectionButton.addEventListener('click', showCollections);
 
+//event listener for viewing all owned art pieces, hides the collections list, shows the list
+//of art pieces.
 artButton.addEventListener('click', () => {
     if(artSection.classList.contains('hidden')) {
         artSection.classList.remove("hidden");
