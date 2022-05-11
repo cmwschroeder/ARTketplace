@@ -4,7 +4,6 @@ const collectionSection = document.querySelector("#collection-section");
 
 //references to buttons
 const artButton = document.querySelector("#art-button");
-const addButton = document.querySelector("#add-button");
 const collectionButton = document.querySelector("#collection-button");
 
 //This function will fetch all collections owned by the user and add all art pieces to the sections

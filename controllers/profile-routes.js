@@ -3,21 +3,23 @@ const { ArtPiece, Collection, User } = require('../models');
 
 router.get('/', async (req, res) => {
     const artData = await ArtPiece.findAll({
-        where: {user_id: 1} //where: {user_id: req.session.userId}
+        where: {user_id: req.session.userId}
     });
+
+    console.log(req.session.userId);
 
     const artPieces = artData.map((art) => art.get({ plain: true}));
 
     res.render('profile', {
         loggedIn: req.session.loggedIn,
         artPieces: artPieces,
-        userId: 1, //req.session.userId
+        userId: req.session.userId,
     });
 });
 
 router.get('/artpiece/', async (req, res) => {
     const collectionData = await Collection.findAll({
-        where: {user_id: 1} //where: {user_id: req.session.userId}
+        where: {user_id: req.session.userId}
     });
 
     const collections = collectionData.map((collection) => collection.get({ plain: true}));
@@ -36,7 +38,25 @@ router.get('/artpiece/', async (req, res) => {
 });
 
 router.get('/artpiece/:id', async (req, res) => {
+    try {
+        const collectionData = await Collection.findAll({
+            where: {user_id: req.session.userId}
+        });
 
+        console.log()
+
+        // const artData = await ArtPiece.create({
+        //     title: req.body.title,
+        //     description: req.body.description,
+        //     title: req.body.title,
+        //     user_id: req.session.userId,
+        //     image: req.body.image,
+        //     is_for_sale: req.body.forSale,
+        //     price: req.body.price,
+        // });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 

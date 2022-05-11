@@ -23,9 +23,40 @@ const addArt = async (req,res) => {
     const description = descriptionEl.value;
     const imageLink = imageLinkEl.value;
     const price = priceEl.value;
-    const forSale = forSaleEl.value;
+    const forSale = forSaleEl.checked;
 
-    console.log(forSale);
+
+    var hasCollection = false;
+    var collection;
+
+    if(title && description && imageLink && price) {
+        if(newCollection) {
+            hasCollection = true;
+            collection = newCollection;
+        } else if (whichCollection != "No Collection") {
+            hasCollection = true;
+            collection = whichCollection;
+        } else {
+            collection = "";
+        }
+
+        const response = await fetch('/profile/artpiece', {
+            method: 'POST',
+            body: JSON.stringify({ title, description, imageLink, price, forSale, hasCollection, collection }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        //if we were able to create the art listing go to profile, if not tell the user
+        if (response.ok) {
+            document.location.replace('/profile');
+        } else {
+            alert('Failed to add art');
+        }
+    }
+    else {
+        alert("One of the fields was not filled in, fill in all fields except optionally collections");
+        return;
+    }
 
 };
 
