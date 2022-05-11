@@ -97,8 +97,34 @@ router.put('/:id', (req, res) => {
         where: {
             id: req.params.id
         }
-    }
-    )
+    })
+    .then(collectionDbData => {
+        if(!collectionDbData) {
+            res.status(404).json({ message: 'No collection data found with this id'});
+            return;
+        }
+        res.json(collectionDbData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+router.delete('/:id',(req, res) =>{
+    Collection.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(collectionDbData => {
+        if (!collectionDbData) {
+            res.status(404).json({ message: 'No collection found with this id'});
+            return;
+        }
+        res.json(collectionDbData)
+    })
+
 })
 
 module.exports = router;
