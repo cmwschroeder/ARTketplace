@@ -5,16 +5,23 @@
     <div class="w-11/12 mx-3 mt-10 mb-3 flex flex-row justify-around">
         <button class="btn btn-primary m-2 w-1/3" id="art-button">View Art Pieces</button>
         <button class="btn btn-secondary m-2 w-1/3" id="add-button">Create Listing</button>
-        <button class="btn btn-accent m-2 w-1/3" id="collection-button" data-user={{userId}}>View Collections</button>
+        <button class="btn btn-accent m-2 w-1/3" id="collection-button" data-user={{userId}}>View By Collections</button>
     </div>
+
+    <div class="divider w-full"></div> 
 
     <div class="w-full h-full hidden flex-row flex-wrap justify-around" id="art-section">
         {{#each artPieces as |artPiece|}}
         <div class="card w-96 bg-base-100 shadow-xl m-3">
-            <figure><img class="h-48" src={{artPiece.image}} alt="Art" /></figure>
+            <figure><img class="h-48" src={{artPiece.image}} alt="Art Piece" /></figure>
             <div class="card-body">
                 <div class="w-full text-center">
                     <p class="text-3xl">${{artPiece.price}}</p>
+                    {{#if artPiece.is_for_sale}}
+                    <p class="text-xl">Up for sale</p>
+                    {{else}}
+                    <p class="text-xl">Not up for sale</p>
+                    {{/if}}
                 </div>
                 <h2 class="card-title">{{artPiece.title}}</h2>
                 <p>{{artPiece.description}}</p>
@@ -26,5 +33,7 @@
         {{/each}}
     </div>
 </div>
+
+<div id="collection-section"></div>
 
 <script src="/js/profile.js"></script>
