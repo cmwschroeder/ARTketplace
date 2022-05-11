@@ -45,6 +45,8 @@ router.get('/artpiece/:id', async (req, res) => {
 router.post('/artpiece', async (req, res) => {
     try {
         if(req.body.hasCollection) {
+            console.log(req.body);
+
             const collectionData = await Collection.findAll({
                 where: {user_id: req.session.userId}
             });
@@ -59,20 +61,38 @@ router.post('/artpiece', async (req, res) => {
                 }
             }
             if(collectionId === 0) {
-                
+                const collectionData = await Collection.create({
+                    title: req.body.collection,
+                    user_id: req.session.userId,
+                })
+                const newCollection = collectionData.get({ plain: true});
+                collectionId = newCollection.id;
             }
+            const artData = await ArtPiece.create({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+                collection_id: collectionId,
+            });
+        }
+        else {
+            const artData = await ArtPiece.create({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+            });
         }
 
-        // const artData = await ArtPiece.create({
-        //     title: req.body.title,
-        //     description: req.body.description,
-        //     title: req.body.title,
-        //     user_id: req.session.userId,
-        //     image: req.body.image,
-        //     is_for_sale: req.body.forSale,
-        //     price: req.body.price,
-        // });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
