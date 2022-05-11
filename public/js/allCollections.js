@@ -82,7 +82,7 @@ async function displayCollections() {
 
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener("click", function () {
-      location.href = `/collection/:${collections[i].id}`;
+      location.href = `/collection/${collections[i].id}`;
     });
   }
 }
