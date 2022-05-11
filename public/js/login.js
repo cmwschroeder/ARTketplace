@@ -3,6 +3,7 @@ const signupForm = document.querySelector("#signup-form");
 const signupBtn = document.querySelector("#create-btn");
 const loginBtn = document.querySelector("#login-btn");
 
+
 signupBtn.addEventListener("click", (event) => {
     loginForm.classList.add("hidden");
     loginForm.classList.remove("flex");
@@ -25,12 +26,10 @@ loginBtn.addEventListener("click", (event) => {
 const loginFormHandler = async (event) => {
     event.preventDefault();
   
-    // Collect values from the login form
     const username = document.querySelector("#username-login").value.trim();
     const password = document.querySelector("#password-login").value.trim();
   
     if (username && password) {
-      // Send a POST request to the API endpoint
       const response = await fetch('/api/users/login', {
         method: 'POST',
         body: JSON.stringify({ username, password }),
@@ -38,7 +37,6 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        // If successful, redirect the browser to the home page
         document.location.replace('/');
       } else {
         alert(response.statusText);
@@ -68,9 +66,9 @@ const loginFormHandler = async (event) => {
   };
 
 document
-  .querySelector('.login-form')
+  .querySelector('#main-login-btn')
   .addEventListener('click', loginFormHandler);
 
 document
-  .querySelector('.signup-form')
+  .querySelector('#main-create-btn')
   .addEventListener('click', signupFormHandler);
