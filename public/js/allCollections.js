@@ -6,20 +6,20 @@ async function displayCollections() {
   const collections = await response.json();
   console.log(collections);
 
-  var outputString = ``
-  var generatedString = ""
-  
-  for(let i=0; i<collections.length; i++) {
+  var outputString = ``;
+  var generatedString = "";
+
+  for (let i = 0; i < collections.length; i++) {
     generatedString += `
-    <h1 class="card-title ml-4 text-accent">${collections[i].title}</h1>
+    <h1 class="card-title ml-4 text-accent" style="font-size:x-large; text-transform: uppercase">${collections[i].title}</h1>
     <div class="carousel rounded-box">
     <div  style="margin-bottom: 2vw; background-color: black">
     <div class="card-body">
       
-      <div class="owl-carousel owl-theme">`
+      <div class="owl-carousel owl-theme">`;
 
-      for(let x=0; x<collections[i].artPieces.length; x++) {
-        generatedString += `
+    for (let x = 0; x < collections[i].artPieces.length; x++) {
+      generatedString += `
         
         
         <div class="item">
@@ -33,44 +33,45 @@ async function displayCollections() {
         </div>
         </div>
         </div> 
-        `
-      }
+        `;
+    }
 
-      generatedString += `
+    generatedString += `
+        </div>
+      </div>
+      
+        <div>  
+            <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg" id="${collections[i].id}" style="margin-bottom: 1vw; margin-left:1vw">View Collection</button>
         </div>
       </div>
     </div>
-    </div>
-      `
+      `;
   }
 
   outputString += generatedString;
 
   $("#addCarouselHere").append().html(outputString);
-  
-  
-  
-  $('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:50,
-    nav:false,
+
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 50,
+    nav: false,
     dots: false,
     autoplay: true,
     autoplayTimeout: 2000,
     stagePadding: 0,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:3
-        }
-    }
-})
-   
+    responsive: {
+      0: {
+        items: 1,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 3,
+      },
+    },
+  });
 }
 
 displayCollections();
