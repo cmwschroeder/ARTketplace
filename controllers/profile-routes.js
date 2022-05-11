@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     res.render('profile', {
         loggedIn: req.session.loggedIn,
         artPieces: artPieces,
+        user_id: req.session.userId
     });
 })
 router.get('/artpiece/:id', async (req, res) => {
