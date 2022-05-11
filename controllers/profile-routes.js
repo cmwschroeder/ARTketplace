@@ -38,12 +38,30 @@ router.get('/artpiece/', async (req, res) => {
 });
 
 router.get('/artpiece/:id', async (req, res) => {
-    try {
-        const collectionData = await Collection.findAll({
-            where: {user_id: req.session.userId}
-        });
+    
+});
 
-        console.log()
+
+router.post('/artpiece', async (req, res) => {
+    try {
+        if(req.body.hasCollection) {
+            const collectionData = await Collection.findAll({
+                where: {user_id: req.session.userId}
+            });
+        
+            const collections = collectionData.map((collection) => collection.get({ plain: true}));
+    
+            let collectionId = 0;
+    
+            for(let i = 0; i < collections.length; i++) {
+                if(collections[i].title === req.body.collection) {
+                    collectionId = collections[i].id;
+                }
+            }
+            if(collectionId === 0) {
+                
+            }
+        }
 
         // const artData = await ArtPiece.create({
         //     title: req.body.title,
@@ -57,11 +75,6 @@ router.get('/artpiece/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-});
-
-
-router.post('/artpiece', async (req, res) => {
-
 });
 
 router.put('/artpiece/:id', async (req, res) => {
