@@ -1,0 +1,25 @@
+<h1 style="font-size: 30px; text-align: center; font-family: 'Poppins', sans-serif; padding-top: 2vw; text-transform:uppercase;" class="m-4">🌠  {{{theCollection.title}}}  🌠</h1>
+<p>Collection by {{{theCollection.user.name}}}</p>
+
+<div class="w-full h-full flex flex-row flex-wrap justify-around" id="art-section">
+        {{#each theCollection.artPieces as |art|}}
+        <div class="card w-96 bg-base-100 shadow-xl m-3">
+            <figure><img class="h-48" src={{art.image}} alt="Art Piece" /></figure>
+            <div class="card-body">
+                <div class="w-full text-center">
+                    <p class="text-3xl">${{art.price}}</p>
+                    {{#if art.is_for_sale}}
+                    <p class="text-xl text-accent">Up for sale</p>
+                    {{else}}
+                    <p class="text-xl">Not up for sale</p>
+                    {{/if}}
+                </div>
+                <h2 class="card-title">{{art.title}}</h2>
+                <p class="text-accent">{{art.description}}</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-secondary">View</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
