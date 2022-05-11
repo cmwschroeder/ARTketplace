@@ -6,7 +6,7 @@ const artData = [
         user_id: 1,
         description: 'its exactly what it sounds like',
         image: 'https://images.saatchiart.com/saatchi/5565/art/6358973/5428735-PRYHLOPB-7.jpg',
-        collection_id: 1,
+        collection_id: 3,
         is_for_sale: true,
         price: 100
     },
@@ -15,7 +15,7 @@ const artData = [
         user_id: 1,
         description: 'its exactly what it sounds like',
         image: 'https://i.etsystatic.com/15952644/r/il/eadb70/1655832853/il_fullxfull.1655832853_1510.jpg',
-        collection_id: 1,
+        collection_id: 3,
         is_for_sale: true,
         price: 50
 

@@ -12,4 +12,15 @@ router.get('/user/:id', async (req,res) => {
     res.json(collections);
 });
 
+//Get api/collections
+router.get('/', async (req,res) => {
+    const collectionData = await Collection.findAll({
+        include: [ArtPiece, User],
+    });
+
+    const collections = collectionData.map((collection) => collection.get({ plain: true }));
+
+    res.json(collections);
+});
+
 module.exports = router;
