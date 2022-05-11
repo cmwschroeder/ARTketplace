@@ -16,7 +16,7 @@ async function displayCollections() {
     <div  style="margin-bottom: 2vw; background-color: black">
     <div class="card-body">
       
-      <div class="owl-carousel owl-theme">`;
+      <div class="owl-carousel owl-theme" id="carousel${i+1}">`;
 
     for (let x = 0; x < collections[i].artPieces.length; x++) {
       generatedString += `
@@ -52,26 +52,30 @@ async function displayCollections() {
 
   $("#addCarouselHere").append().html(outputString);
 
-  $(".owl-carousel").owlCarousel({
-    loop: true,
-    margin: 50,
-    nav: false,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 2000,
-    stagePadding: 0,
-    responsive: {
-      0: {
-        items: 1,
-      },
-      600: {
-        items: 3,
-      },
-      1000: {
-        items: 3,
-      },
-    },
-  });
+for(let q=0; q<collections.length; q++) {
+    $(`#carousel${q+1}`).owlCarousel({
+        loop: true,
+        margin: 40,
+        nav: false,
+        dots: false,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        stagePadding: 0,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          600: {
+            items: 3,
+          },
+          1000: {
+            items: 3,
+          },
+        },
+      });
+}
+
+  
 }
 
 displayCollections();
