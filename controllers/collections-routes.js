@@ -4,41 +4,10 @@ const sequelize = require('../config/connection')
 
 
 router.get('/', async (req, res) => {
-    console.log(req.session)
-    Collection.findAll({
-        attribute: [
-            'id',
-            'title',
-            'user_id',
-            'description',
-            'collection_id'
-        ],
-        include: [
-            {
-                model: Collection,
-                attributes: ['id', 'title', 'user_id', 'description', 'collection_id'],
-                include: {
-                    model: ArtPiece,
-                    attributes: ['id', 'title', 'user_id', 'description'],
-                }
-            },
-            {
-                model: User,
-                attributes: ['id', 'user_id', 'name']
-            }
-        ]
-    })
-    .then(collectionDbData => {
-        const collections = collectionDbData.map(collection => collection.get({ plain: true }));
-        res.render('collection', {
-            collections
-        });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+
+    
+})
+    
 
 router.get('/:id', (req, res) => {
     Collection.findOne({
