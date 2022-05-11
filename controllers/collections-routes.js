@@ -102,5 +102,21 @@ router.delete('/:id',(req, res) =>{
         }
         res.json(collectionDbData)
     })
+
+})
+
+router.delete('/:id',(req, res) =>{
+    Collection.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(collectionDbData => {
+        if (!collectionDbData) {
+            res.status(404).json({ message: 'No collection found with this id'});
+            return;
+        }
+        res.json(collectionDbData)
+    })
 })
 module.exports = router;
