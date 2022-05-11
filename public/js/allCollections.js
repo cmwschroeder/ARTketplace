@@ -45,7 +45,7 @@ async function displayCollections() {
         
       </div>
         <div>  
-            <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg viewCollectionButton" id="${collections[i].id}" style="margin-bottom: 1vw; margin-left:1vw">View Collection</button>
+            <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-accent viewCollectionButton" id="${collections[i].id}" style="margin-bottom: 1vw; margin-left:1vw; background-color:rgb(15, 17, 31); border-color: rgb(15, 17, 31);">View Collection</button>
         </div>
       </div>
     </div>
