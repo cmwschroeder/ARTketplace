@@ -2,6 +2,10 @@ const loginForm = document.querySelector("#login-form");
 const signupForm = document.querySelector("#signup-form");
 const signupBtn = document.querySelector("#create-btn");
 const loginBtn = document.querySelector("#login-btn");
+const mymodal2 = document.querySelector("#my-modal-2");
+const mymodal3 = document.querySelector("#mymodal3");
+const closeButton3 = document.querySelector("closeButton3");
+
 
 
 signupBtn.addEventListener("click", (event) => {
@@ -39,10 +43,15 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        //Display modal
+        mymodal2.classList.add("modal-open")
       }
     }
   };
+const closeButton = document.querySelector("#closeButton");
+closeButton.addEventListener("click", function() {
+  mymodal2.classList.remove("modal-open");
+})
 
   const signupFormHandler = async (event) => {
     event.preventDefault();
@@ -60,10 +69,17 @@ const loginFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        //Display modal
+        mymodal3.classList.add("modal-open");
       }
     }
   };
+
+if(closeButton3) {
+  closeButton3.addEventListener("click", function() {
+  mymodal3.classList.remove("modal-open");
+});
+}
 
 document
   .querySelector('#main-login-btn')
