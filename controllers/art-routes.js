@@ -4,7 +4,7 @@ const sequelize = require("../config/connection");
 
 router.get('/:id', async (req, res) => {
     try {
-        if (!req.session.logged_in) {
+        if (!req.session.loggedIn) {
             res.redirect('/login');
             return;
         }
