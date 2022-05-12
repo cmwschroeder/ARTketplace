@@ -12,7 +12,7 @@ const addArtButton = document.querySelector("#add-art");
 const deleteArtButton = document.querySelector("#delete-art");
 const udpateArtButton = document.querySelector("#update-art");
 
-const addArt = async (req,res) => {
+const addArt = async (event) => {
     const newCollection = newCollectionEl.value;
     const whichCollection = whichCollectionEl.value;
 
@@ -62,4 +62,25 @@ const addArt = async (req,res) => {
 
 };
 
-addArtButton.addEventListener('click', addArt);
+const updateArt = async (event) => {
+
+};
+
+const deleteArt = async (event) => {
+    const response = await fetch(window.location.pathname, {
+        method: 'DELETE',
+    });
+
+    //if we were able to delete the art go to profile, if not tell the user
+    if (response.ok) {
+        console.log("yo");
+        document.location.replace('/profile');
+    } else {
+        alert('Failed to delete art');
+    }
+};
+
+if(addArtButton) {
+    addArtButton.addEventListener('click', addArt);
+};
+deleteArtButton.addEventListener('click', deleteArt);
