@@ -48,7 +48,11 @@ const addArt = async (event) => {
             collection = "";
         }
 
-        const response = await fetch('/profile/artpiece', {
+        //get the id of the current art by parsing the URL we are at
+        const pathName = window.location.pathname.split("/");
+        const artId = pathName[pathName.length - 1];
+
+        const response = await fetch('/user/art/' + artId, {
             method: 'POST',
             body: JSON.stringify({ title, description, imageLink, price, forSale, hasCollection, collection }),
             headers: { 'Content-Type': 'application/json' },
@@ -97,7 +101,11 @@ const updateArt = async (event) => {
             collection = "";
         }
 
-        const response = await fetch(window.location.pathname, {
+        //get the id of the current art by parsing the URL we are at
+        const pathName = window.location.pathname.split("/");
+        const artId = pathName[pathName.length - 1];
+
+        const response = await fetch('/user/art/' + artId, {
             method: 'PUT',
             body: JSON.stringify({ title, description, imageLink, price, forSale, hasCollection, collection }),
             headers: { 'Content-Type': 'application/json' },
@@ -117,7 +125,10 @@ const updateArt = async (event) => {
 };
 
 const deleteArt = async (event) => {
-    const response = await fetch(window.location.pathname, {
+    //get the id of the current art by parsing the URL we are at
+    const pathName = window.location.pathname.split("/");
+    const artId = pathName[pathName.length - 1];
+    const response = await fetch('/user/art/' + artId, {
         method: 'DELETE',
     });
 
@@ -137,6 +148,10 @@ previewArtButton.addEventListener('click', (event) => {
             popperInstance.update();
         }
         else {
+            previewImageEl.classList.add("hidden");
+        }
+    } else {
+        if(!previewImageEl.classList.contains("hidden")) {
             previewImageEl.classList.add("hidden");
         }
     }
