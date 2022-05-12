@@ -1,56 +1,62 @@
-<div id='login-form'class="w-full flex justify-center mt-50">
-    <div class="card w-96 bg-base-100 shadow-xl flex justify-center">
-        <div class="card-body">
-            <h2 class="card-title">Login</h2>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Username</span>
-                </label>
-                <input id="username-login" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+<div   class="hero min-h-screen" style="background-image: url(/assets/loginbg.png);">
+    <div id='login-form' class="w-full flex justify-center mt-50">
+        <div class="card w-96 bg-base-100 shadow-xl flex justify-center">
+            <div class="card-body">
+                <h2 class="card-title">Login</h2>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Username</span>
+                    </label>
+                    <input id="username-login" type="text" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs" />
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    <input id="password-login" type="password" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs" />
+                </div>
+                <div class="card-actions">
+                    <button id="main-login-btn" class="btn btn-primary w-full">Login</button>
+                    <div class ="divider w-full">OR</div>
+                    <button id='create-btn' class="btn btn-secondary w-full">Create Account</button>
+                </div>
             </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Password</span>
-                </label>
-                <input id="password-login" type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-            </div>
-            <div class="card-actions justify-between">
-                <button id ='create-btn'class="btn btn-secondary">Create Account</button>
-                <button id="main-login-btn" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+
+    <div id='signup-form' class="w-full justify-center hidden mt-50">
+        <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title">Sign-Up</h2>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Username</span>
+                    </label>
+                    <input id="username-signup" type="text" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs" />
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Password</span>
+                    </label>
+                    <input id="password-signup" type="password" placeholder="Type here"
+                        class="input input-bordered w-full max-w-xs" />
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text"> Re-enter Password</span>
+                    </label>
+                    <input type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+                </div>
+                <div class="card-actions">
+                    <button id="main-create-btn" class="btn btn-primary w-full">Create Account</button>
+                    <div class="divider w-full">OR</div>
+                    <button id="login-btn" class="btn btn-secondary w-full">Login</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<div id ='signup-form'class="w-full justify-center hidden mt-50">
-    <div class="card w-96 bg-base-100 shadow-xl">
-        <div class="card-body">
-            <h2 class="card-title">Sign-Up</h2>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Username</span>
-                </label>
-                <input id="username-signup" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-            </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text">Password</span>
-                </label>
-                <input id="password-signup" type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-            </div>
-            <div class="form-control w-full max-w-xs">
-                <label class="label">
-                <span class="label-text"> Re-enter Password</span>
-                </label>
-                <input type="password" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-            </div>
-            <div class="card-actions justify-between">
-                <button id="login-btn" class="btn btn-secondary">Login</button>
-                <button id="main-create-btn" class="btn btn-primary">Create Account</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src = "/js/login.js"></script>
-
+<script src="/js/login.js"></script>
