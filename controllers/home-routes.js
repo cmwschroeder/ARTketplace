@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const res = require('express/lib/response');
 const {
     ArtPiece,
     Collection,
@@ -94,22 +95,41 @@ router.get('/art/:id', async (req, res) => {
 router.put("/art/:id", async (req, res) => {
 
 });
+// sort route for sorting
 router.get('/sort', async (req, res) => {
-const artData = await ArtPiece.findAll({
-    order: [
-      ["price", "DESC"],
-      ["title", "ASC"],
-    ],
-  })
-  const artPieces = artData.map((art) => art.get({ plain: true}));
-  res.render('homePage', {
-       artPieces,
-  loggedIn: req.session.loggedIn
-  })
+    // sorting by high to low on price
+    const artData = await ArtPiece.findAll({
+        order: [
+            ["price", "DESC"],
+            ["title", "ASC"],
+        ],
+    })
+    const artPieces = artData.map((art) => art.get({
+        plain: true
+    }));
+        res.render('homePage', {
+            artPieces,
+            loggedIn: req.session.loggedIn
+        })
+    })
+    // listen to filter option and get the route data
+    const artfilter = document.querySelector(".filter-price") 
+    artfilter.addEventListener('change', () => {
+    //test route for filter 
+router.get('/filter', async (req, res) => {
+    const artDb= await ArtPiece.findAll({
+        //find ALL item title by price range
+        attributes: ['title'],
+        where: { price: 50-200},
+    })
+    const artFilters = artDb.map((art) => art.get({
+        plain: true
+    }));
+    res.render('homePage', {
+        artFilters,
+        loggedIn: req.session.session
+    })
 })
-
-
-
-
+})
 
 module.exports = router;
