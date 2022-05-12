@@ -16,6 +16,7 @@ artfilter.addEventListener('change', (event) => {
     } 
     if (max && min) {
         
+        
     }
 })
             
