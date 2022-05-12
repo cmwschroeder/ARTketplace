@@ -38,7 +38,7 @@ const showCollections = async (event) => {
     for (let i = 0; i < collections.length; i++) {
         if (collections[i].artPieces.length != 0) {
             var collectionHeader = document.createElement('h2');
-            collectionHeader.textContent = collections[i].title + " Collection:";
+            collectionHeader.textContent = collections[i].title + ":";
             collectionHeader.classList.add("text-3xl", "m-5");
             collectionSection.appendChild(collectionHeader);
 
