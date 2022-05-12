@@ -83,8 +83,8 @@ async function displayCollections() {
   var allButtons = document.querySelectorAll(".viewCollectionButton");
 
   for (let i = 0; i < allButtons.length; i++) {
-    allButtons[i].addEventListener("click", function () {
-      location.href = `/collections/${collections[i].id}`;
+    allButtons[i].addEventListener("click", function (event) {
+      location.href = `/collections/${event.target.getAttribute("id")}`;
     });
   }
 }
