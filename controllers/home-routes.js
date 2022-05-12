@@ -78,7 +78,9 @@ router.get('/art/:id', async (req, res) => {
                 plain: true
             });
 
-            res.render('', {
+            res.render('buyArtpage', {
+                artPiece,
+                loggedIn: req.session.loggedIn
 
             })
         })
@@ -92,6 +94,20 @@ router.get('/art/:id', async (req, res) => {
 router.put("/art/:id", async (req, res) => {
 
 });
+router.get('/sort', async (req, res) => {
+const artData = await ArtPiece.findAll({
+    order: [
+      ["price", "DESC"],
+      ["title", "ASC"],
+    ],
+  })
+  const artPieces = artData.map((art) => art.get({ plain: true}));
+  res.render('homePage', {
+       artPieces,
+  loggedIn: req.session.loggedIn
+  })
+})
+
 
 
 
