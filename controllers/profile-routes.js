@@ -166,7 +166,15 @@ router.put('/artpiece/:id', async (req, res) => {
 });
 
 router.delete('/artpiece/:id', async (req, res) => {
-
+    try {
+        await ArtPiece.destroy({
+            where: {
+                id: req.params.id,
+            }
+        });
+    } catch(err) {
+        res.status(500).json(err);
+    }
 });
 
 
