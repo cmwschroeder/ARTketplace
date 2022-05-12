@@ -33,7 +33,7 @@
             href="#my-modal-2"
             class="btn btn-accent w-full"
             id="main-login-btn"
-          >Login Button 1</a>
+          >Login</a>
           <div class="divider w-full">OR</div>
           <button id="create-btn" class="btn btn-secondary w-full">Create
             Account</button>
@@ -90,8 +90,7 @@
           />
         </div>
         <div class="card-actions">
-          <button id="main-create-btn" class="btn btn-primary w-full">Create
-            Account</button>
+          <a href="#mymodal3" class="btn btn-primary" id="main-create-btn">Create Account</a>
           <div class="divider w-full">OR</div>
           <button id="login-btn" class="btn btn-secondary w-full">Login</button>
         </div>
@@ -99,4 +98,15 @@
     </div>
   </div>
 </div>
+
+<div class="modal" id="mymodal3">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">❌ ACCOUNT CREATION FAILED ❌</h3>
+    <p class="py-4" style="text-transform: uppercase;">Passwords need to be atleast 8 characters long</p>
+    <div class="modal-action">
+     <a href="#" class="btn" id="closeButton3">Ok!</a>
+    </div>
+  </div>
+</div>
+
 <script src="/js/login.js"></script>
