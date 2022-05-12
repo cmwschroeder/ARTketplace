@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const {
     ArtPiece,
@@ -67,7 +68,7 @@ router.get('/filter/:max/:min', async (req, res) => {
     const artData = await ArtPiece.findAll({
         where: {
             price: {
-                $between: [req.params.min, req.params.max]
+                [Op.between]: [req.params.min, req.params.max]
             }}
     })
     const artPieces = artData.map((art) => art.get({ plain: true}))
