@@ -1,4 +1,5 @@
 
+
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col lg:flex-row-reverse">
     <img src={{artPiece.image}} class="max-w-sm rounded-lg shadow-2xl p-3" />
@@ -7,14 +8,31 @@
       <p class="py-6" style="font-family: 'Poppins', sans-serif;">{{artPiece.description}}</p>
       <p class="py-6" style="font-family: 'Poppins', sans-serif;">${{artPiece.price}}</p>
       {{#if artPiece.is_for_sale}}
-      <button id="buy-btn" class="btn btn-accent">BUY NOW</button>
+      <a href="#my-modal-2" class="btn btn-accent enabledButton">BUY NOW</a>
       {{else}}
-      <button class="btn" disabled="disabled">NOT FOR SALE</button>
+      <a href="#my-modal-2" class="btn enabledButton" disabled="disabled">NOT FOR SALE</a>
       {{/if}}
     </div>
   </div>
 </div>
 
+<canvas id="my-canvas"
+style="position: fixed; top:0; left:0; width:100%; height: 100vh; z-index: 1000; visibility: hidden;"
+></canvas>
+
+<div class="modal" id="my-modal-2">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">🎊 PURCHASE SUCCESSFUL! 🎊</h3>
+    <p class="py-4" style="text-transform: uppercase;">This Art Piece can be found on your profile and you can choose to list it for sale</p>
+    <div class="modal-action">
+     <a href="#" class="btn">Yay!</a>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="/js/confetti.min.js"></script>
 <script src="/js/oneArt.js"></script>
 
 
