@@ -91,7 +91,8 @@ const showCollections = async (event) => {
                 var editButtonDiv = document.createElement('div');
                 editButtonDiv.classList.add('card-actions', 'justify-end');
                 var editButton = document.createElement('button');
-                editButton.classList.add('btn', 'btn-secondary');
+                editButton.classList.add('btn', 'btn-secondary', 'edit-button');
+                editButton.setAttribute('data-number', collections[i].artPieces[j].id);
                 editButton.textContent = 'Edit';
                 editButtonDiv.appendChild(editButton);
 
@@ -112,12 +113,20 @@ const showCollections = async (event) => {
                 var dividerEl = document.createElement('div');
                 dividerEl.classList.add('divider', 'w-full');
                 currCollection.appendChild(dividerEl);
-            }
+            };
         }
     };
 
     //remove loading animation from button
     collectionButton.classList.remove('loading');
+
+    //give created buttons an event listener
+    document.querySelectorAll(".edit-button").forEach((button) => {
+        button.addEventListener('click', (event) => {
+            artId = event.target.getAttribute("data-number");
+            document.location.replace('/profile/artpiece/' + artId);
+        });
+    });
 };
 
 collectionButton.addEventListener('click', showCollections);
