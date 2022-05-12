@@ -18,17 +18,21 @@ Users will have the ability to create an account and have access to their own pr
 
 Overall, ARTketplace is a fun and inviting platform where art can be shared and users can be inspired.
 
-## Application Preview
+## Application Preview ⭐
 
-## Features
+## Features ⚡️
 
-## Usage
+## Usage 💡
 
-## Technologies
+## Technologies 🔧
 
-## Authors
+## Authors 👩
+* **Christian Shroeder** - [LinkedIn](https://www.linkedin.com/in/christian-schroeder1/)
+* **Nghia David Le** - [LinkedIn](https://www.linkedin.com/in/nghia-le-4a2b9b232/)
+* **Maya Morales** - [LinkedIn](https://www.linkedin.com/in/maya-morales-1191351bb/)
+* **Mohammad Razvi** - [LinkedIn](https://www.linkedin.com/in/mohammad-razvi/)
 
-## Credits
+## Credits 🙌
 
 ## License
 
