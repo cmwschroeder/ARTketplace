@@ -6,7 +6,7 @@ const mymodal2 = document.querySelector("#my-modal-2");
 const mymodal3 = document.querySelector("#mymodal3");
 const closeButton3 = document.querySelector("#closeButton3");
 const successfulLoginModal = document.querySelector("#successfulLoginModal")
-
+const accountCreatedModal = document.querySelector("#accountCreatedModal")
 
 
 signupBtn.addEventListener("click", (event) => {
@@ -78,7 +78,8 @@ closeButton.addEventListener("click", function() {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        //Display successful modal
+        accountCreatedModal.classList.add("modal-open");
       } else {
         //Display error modal
         mymodal3.classList.add("modal-open");
@@ -86,6 +87,13 @@ closeButton.addEventListener("click", function() {
     }
   };
 
+  const awesomeButton = document.querySelector("#awesomeButton")
+  if(awesomeButton) {
+    awesomeButton.addEventListener("click", function() {
+      accountCreatedModal.classList.remove("modal-open");
+      document.location.replace('/');
+    })
+  }
 
 if(closeButton3) {
   closeButton3.addEventListener("click", function() {
