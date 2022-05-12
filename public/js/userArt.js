@@ -12,6 +12,12 @@ const addArtButton = document.querySelector("#add-art");
 const deleteArtButton = document.querySelector("#delete-art");
 const udpateArtButton = document.querySelector("#update-art");
 
+
+const previewArtButton = document.querySelector("#preview-button");
+const previewImageEl = document.querySelector("#preview-img");
+
+const popperInstance = Popper.createPopper(previewArtButton, previewImageEl);
+
 const addArt = async (event) => {
     const newCollection = newCollectionEl.value;
     const whichCollection = whichCollectionEl.value;
@@ -122,6 +128,19 @@ const deleteArt = async (event) => {
         alert('Failed to delete art');
     }
 };
+
+previewArtButton.addEventListener('click', (event) => {
+    if(imageLinkEl.value) {
+        if(previewImageEl.classList.contains("hidden")) {
+            previewImageEl.setAttribute("src", imageLinkEl.value);
+            previewImageEl.classList.remove("hidden");
+            popperInstance.update();
+        }
+        else {
+            previewImageEl.classList.add("hidden");
+        }
+    }
+});
 
 if(addArtButton) {
     addArtButton.addEventListener('click', addArt);
