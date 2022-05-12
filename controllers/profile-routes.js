@@ -40,6 +40,8 @@ router.get('/artpiece/:id', async (req, res) => {
         include: [Collection],
     });
 
+    console.log(artData);
+
     const artPiece = artData.get({ plain: true });
 
     for(let i = 0; i < collections.length; i++) {
@@ -104,7 +106,7 @@ router.post('/artpiece', async (req, res) => {
                 price: req.body.price,
             });
         }
-
+        res.json("Art created");
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -144,6 +146,11 @@ router.put('/artpiece/:id', async (req, res) => {
                 is_for_sale: req.body.forSale,
                 price: req.body.price,
                 collection_id: collectionId,
+            }, 
+            {
+                where: {
+                    id: req.params.id,
+                }
             });
         }
         else {
@@ -156,9 +163,14 @@ router.put('/artpiece/:id', async (req, res) => {
                 is_for_sale: req.body.forSale,
                 price: req.body.price,
                 collection_id: null,
+            }, 
+            {
+                where: {
+                    id: req.params.id,
+                }
             });
         }
-
+        res.json("Art updated");
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
