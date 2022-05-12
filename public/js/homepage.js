@@ -23,10 +23,9 @@ artfilter.addEventListener('change', (event) => {
 const artSort = document.querySelector('.sort-price')
 artSort.addEventListener('change', (event) => {
     const sortValue = artSort.value
-    let highest 
-    let lowest 
-    if (sortValue === 'LtoH'){
-        
+    if (sortValue === 'Lower to Higher') {
+        document.location.replace('/sort/low')
+    } else if (sortValue === 'Higher to Lower') {
+        document.location.replace('/sort/high')
     }
-
 })
