@@ -91,20 +91,22 @@ router.get('/filter/:max/:min', async (req, res) => {
             }
         }
     })
+    // send it to homepage all the price range artpiece
     const artPieces = artData.map((art) => art.get({ plain: true }))
     res.render('homePage', {
         artPieces,
         loggedIn: req.session.loggedIn
     })
 });
-
+// search bar route
 router.get('/search/:title', async (req, res) => {
+    // find all artpieces with the title that user search
     const artData = await ArtPiece.findAll({
         where: {
             title: req.params.title,
         }
     });
-
+// send into homepage with all the info that need and get rid of other
     const artPieces = artData.map((art) => art.get({ plain: true }));
 
     res.render('homePage', {
