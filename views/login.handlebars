@@ -45,10 +45,21 @@
   {{! Modal for incorrect login credentials }}
   <div class="modal" id="my-modal-2">
     <div class="modal-box">
-      <h3 class="font-bold text-lg"> INCORRECT USERNAME OR PASSWORD! </h3>
+      <h3 class="font-bold text-lg">❌ INCORRECT USERNAME OR PASSWORD! ❌</h3>
       <p class="py-4" style="text-transform: uppercase;">Please re-enter username and password</p>
       <div class="modal-action">
         <a href="#" class="btn" id="closeButton">Ok!</a>
+      </div>
+    </div>
+  </div>
+
+{{!-- SUccesful Login modal --}}
+<div class="modal" id="successfulLoginModal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">✅ LOGIN SUCCESSFUL ✅</h3>
+      <p class="py-4" style="text-transform: uppercase;">Welcome back!</p>
+      <div class="modal-action">
+        <a href="#" class="btn" id="greatButton">Great!</a>
       </div>
     </div>
   </div>
