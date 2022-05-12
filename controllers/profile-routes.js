@@ -42,6 +42,9 @@ router.get('/artpiece/:id', async (req, res) => {
 
     const artPiece = artData.get({ plain: true });
 
+    if(!req.session.loggedIn) {
+        res.redirect('/');
+    }
     if(req.session.userId != artPiece.user_id) {
         res.redirect('/');
     }
