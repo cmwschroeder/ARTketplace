@@ -48,21 +48,44 @@ router.get('/login', async (req, res) => {
 })
 
 router.get('/sort', async (req, res) => {
-const artData = await ArtPiece.findAll({
-    order: [
-      ["price", "DESC"],
-      ["title", "ASC"],
-    ],
-  })
-  const artPieces = artData.map((art) => art.get({ plain: true}));
-  res.render('homePage', {
-       artPieces,
-  loggedIn: req.session.loggedIn
-  })
+    const artData = await ArtPiece.findAll({
+        order: [
+            ["price", "DESC"],
+            ["title", "ASC"],
+        ],
+    })
+    const artPieces = artData.map((art) => art.get({
+        plain: true
+    }));
+    res.render('homePage', {
+        artPieces,
+        loggedIn: req.session.loggedIn
+    })
 })
 
+// listen to filter option and get the route data
+const artfilter = document.querySelector(".filter-price")
+artfilter.addEventListener('change', () => {
+            //test route for filter 
+            router.get('/filter', async (req, res) => {
+                const artDb = await ArtPiece.findAll({
+                    //find ALL item title by price range
+                    attributes: ['title'],
+                    where: {
+                        price: 50 - 200
+                    },
+                })
+                const artFilters = artDb.map((art) => art.get({
+                    plain: true
+                }));
+                res.render('homePage', {
+                    artFilters,
+                    loggedIn: req.session.session
+                })
+            })
+        })
 
 
 
 
-module.exports = router;
+        module.exports = router;
