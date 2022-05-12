@@ -12,7 +12,7 @@ const addArtButton = document.querySelector("#add-art");
 const deleteArtButton = document.querySelector("#delete-art");
 const udpateArtButton = document.querySelector("#update-art");
 
-const addArt = async (req,res) => {
+const addArt = async (event) => {
     const newCollection = newCollectionEl.value;
     const whichCollection = whichCollectionEl.value;
 
@@ -62,4 +62,71 @@ const addArt = async (req,res) => {
 
 };
 
-addArtButton.addEventListener('click', addArt);
+const updateArt = async (event) => {
+    const newCollection = newCollectionEl.value;
+    const whichCollection = whichCollectionEl.value;
+
+    if(newCollection && (whichCollection != "No Collection")) {
+        alert("Only fill in one collection box, or neither if you don't want to add this to a collection");
+        return;
+    }
+
+    const title = titleEl.value;
+    const description = descriptionEl.value;
+    const imageLink = imageLinkEl.value;
+    const price = priceEl.value;
+    const forSale = forSaleEl.checked;
+
+    var hasCollection = false;
+    var collection;
+
+    if(title && description && imageLink && price) {
+        if(newCollection) {
+            hasCollection = true;
+            collection = newCollection;
+        } else if (whichCollection != "No Collection") {
+            hasCollection = true;
+            collection = whichCollection;
+        } else {
+            collection = "";
+        }
+
+        const response = await fetch(window.location.pathname, {
+            method: 'PUT',
+            body: JSON.stringify({ title, description, imageLink, price, forSale, hasCollection, collection }),
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        //if we were able to update the art listing go to profile, if not tell the user
+        if (response.ok) {
+            document.location.replace('/profile');
+        } else {
+            alert('Failed to add art');
+        }
+    }
+    else {
+        alert("One of the fields was not filled in, fill in all fields except optionally collections");
+        return;
+    }
+};
+
+const deleteArt = async (event) => {
+    const response = await fetch(window.location.pathname, {
+        method: 'DELETE',
+    });
+
+    //if we were able to delete the art go to profile, if not tell the user
+    if (response.ok) {
+        document.location.replace('/profile');
+    } else {
+        alert('Failed to delete art');
+    }
+};
+
+if(addArtButton) {
+    addArtButton.addEventListener('click', addArt);
+};
+if(deleteArtButton) {
+    deleteArtButton.addEventListener('click', deleteArt);
+    udpateArtButton.addEventListener('click', updateArt);
+}

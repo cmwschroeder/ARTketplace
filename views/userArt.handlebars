@@ -71,7 +71,9 @@
                 <p class="mb-3">Or choose no collection to create new collection/be a standalone art piece</p>
                 <select class="select select-bordered w-full" id="which-collection">
                     {{#unless newArt}}
+                    {{#if hasCollection}}
                     <option>{{currCollection.title}}</option>
+                    {{/if}}
                     {{/unless}}
                     <option>No Collection</option>
                     {{#each collections as |collection|}}
@@ -115,8 +117,8 @@
             </div>
             {{else}}
             <div class="card-actions justify-between my-3">
-                <button class="btn btn-accent w-1/3" id="delete-art">Delete Art</button>
-                <button class="btn btn-primary w-1/3" id="update-art">Update Art</button>
+                <button class="btn btn-accent w-1/3" id="delete-art" data-number={{artPiece.id}}>Delete Art</button>
+                <button class="btn btn-primary w-1/3" id="update-art" data-number={{artPiece.id}}>Update Art</button>
             </div>
             {{/if}}
         </div>
