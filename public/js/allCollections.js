@@ -16,11 +16,11 @@ async function displayCollections() {
   for (let i = 0; i < collections.length; i++) {
     if (collections[i].artPieces.length) {
       generatedString += `
-    <h1 class="card-title ml-4 text-accent" style="font-size:x-large; text-transform: uppercase">${
+    <h1 class="card-title ml-4 text-accent" style="font-size:x-large; font-family: 'Fredoka One', cursive; color:#1183c1; text-transform: uppercase">${
       collections[i].title
     }</h1>
     
-    <div  style="margin-bottom: 2vw; background-color: black">
+    <div  style="margin-bottom: 2vw; ">
     <div class="card-body">
       
       <div class="owl-carousel owl-theme" id="carousel${i + 1}">`;
@@ -33,22 +33,24 @@ async function displayCollections() {
         <div class="card w-96 bg-base-100 shadow-xl">
         <figure><img class="h-auto" src="${collections[i].artPieces[x].image}" alt="Image" /></figure>
         <div class="card-body">
-            <h2 class="card-title">${collections[i].artPieces[x].title}</h2>
-            <p class="text-accent">${collections[i].artPieces[x].description}</p>
+            <h2 class="card-title" style="color:white;">${collections[i].artPieces[x].title}</h2>
+            <p class="text-accent" style="color:#f73197">${collections[i].artPieces[x].description}</p>
             <h1>$${collections[i].artPieces[x].price}</h1>       
         </div>
         </div>
         </div> 
+        
         `;
       }
       generatedString += `
         
       </div>
         <div>  
-            <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-accent viewCollectionButton" id="${collections[i].id}" style="margin-bottom: 1vw; margin-left:1vw; background-color:rgb(15, 17, 31); border-color: rgb(15, 17, 31);">View Collection</button>
+            <button class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg text-accent viewCollectionButton" id="${collections[i].id}" style="margin-bottom: 1vw; margin-left:1vw; background-color:#4e148c; border-color: #4e148c; color:white;">View Collection</button>
         </div>
       </div>
     </div>
+    <div class="divider"></div>
       `;
     }
 
