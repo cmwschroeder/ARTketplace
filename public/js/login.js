@@ -4,7 +4,8 @@ const signupBtn = document.querySelector("#create-btn");
 const loginBtn = document.querySelector("#login-btn");
 const mymodal2 = document.querySelector("#my-modal-2");
 const mymodal3 = document.querySelector("#mymodal3");
-const closeButton3 = document.querySelector("closeButton3");
+const closeButton3 = document.querySelector("#closeButton3");
+const successfulLoginModal = document.querySelector("#successfulLoginModal")
 
 
 
@@ -41,13 +42,23 @@ const loginFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/');
+        //Display successful modal
+        successfulLoginModal.classList.add("modal-open");
       } else {
         //Display modal
         mymodal2.classList.add("modal-open")
       }
     }
   };
+
+  const greatButton = document.querySelector("#greatButton");
+  if(greatButton) {
+    greatButton.addEventListener("click", function() {
+      successfulLoginModal.classList.remove("modal-open");
+      document.location.replace('/');
+    })
+  }
+
 const closeButton = document.querySelector("#closeButton");
 closeButton.addEventListener("click", function() {
   mymodal2.classList.remove("modal-open");
@@ -69,11 +80,12 @@ closeButton.addEventListener("click", function() {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        //Display modal
+        //Display error modal
         mymodal3.classList.add("modal-open");
       }
     }
   };
+
 
 if(closeButton3) {
   closeButton3.addEventListener("click", function() {
