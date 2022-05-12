@@ -172,6 +172,7 @@ router.delete('/artpiece/:id', async (req, res) => {
                 id: req.params.id,
             }
         });
+        res.json("Art deleted");
     } catch(err) {
         res.status(500).json(err);
     }
