@@ -35,8 +35,9 @@
         placeholder="Search…"
         class="input input-bordered w-3/4"
         style="background-color:black; border-color:#4e148c"
+        id="search-text"
       />
-      <button class="btn btn-secondary w-1/4"  style="background-color:#4e148c; border-color:#4e148c">
+      <button class="btn btn-secondary w-1/4" id="search-button" style="background-color:#4e148c; border-color:#4e148c">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-6 w-6"
@@ -73,6 +74,7 @@
                 </div>
                 <h2 class="card-title">{{artPiece.title}}</h2>
                 <p>{{artPiece.description}}</p>
+                <p>Seller: {{artPiece.user.name}}</p>
                 <div class="card-actions justify-end">
                     <button class="btn btn-secondary edit-button" data-number={{artPiece.id}}>View</button>
                 </div>
