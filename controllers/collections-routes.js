@@ -1,122 +1,98 @@
-const router = require('express').Router();
-const { ArtPiece, Collection, User } = require('../models');
-const sequelize = require('../config/connection')
+const router = require("express").Router();
+const { ArtPiece, Collection, User } = require("../models");
+const sequelize = require("../config/connection");
 
 //Get route for /collections
-router.get('/', async (req, res) => {
-    try {
+router.get("/", async (req, res) => {
+  try {
+    res.render("allCollection", { loggedIn: req.session.loggedIn });
+  } catch (error) {
+    res.status(500);
+  }
+});
 
-    res.render("allCollection", {loggedIn: req.session.loggedIn});
-
-    } catch (error) {
-        res.status(500);
-    }
-
-        
-
-    
-})
-    
-
-router.get('/:id', (req, res) => {
-    Collection.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: ['id', 'title', 'user_id', 'description', 'collection_id'],
-        include: [
-            {
-                model: Collection,
-                attributes: ['id', 'title', 'user_id', 'description', 'collection_id'],
-                include: {
-                    model: ArtPiece,
-                    attributes: ['id', 'title', 'user_id', 'description']
-                }
-            },
-            {
-                model: User,
-                attributes: ['id', 'name', 'user_id',]
-            }
-        ]
-    })
-    .then(collectionDbData => {
-        if (!collectionDbData) {
-            res.status(404).json({message: 'No Collection found with this id'});
-            return;
-        }
-        const collection = collectionDbData.get({played: true})
-        res.render('singleCollection',{
-            collection
-        });
-    })
-  
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    })
-  });    
-    router.post('/', (req, res) => {
-        Collection.create({
-            title: req.body.title,
-            user_id: req.session.user_id
-        })
-        .then(collectionDbData => res.json(collectionDbData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+//Get route for /collections/id
+router.get("/:id", async (req, res) => {
+  try {
+    const specificCollection = await Collection.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [User, ArtPiece],
     });
-router.put('/:id', (req, res) => {
-    Collection.update({
-        title: req.body.title,
-        // update with artpiece id
+    const theCollection = specificCollection.get({ plain: true });
+    res.render("singleCollection", {
+      theCollection,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (error) {
+      res.status(500);
+  }
+});
+
+router.post("/", (req, res) => {
+  Collection.create({
+    title: req.body.title,
+    user_id: req.session.user_id,
+  })
+    .then((collectionDbData) => res.json(collectionDbData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+router.put("/:id", (req, res) => {
+  Collection.update(
+    {
+      title: req.body.title,
+      // update with artpiece id
     },
     {
-        where: {
-            id: req.params.id
-        }
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((collectionDbData) => {
+      if (!collectionDbData) {
+        res
+          .status(404)
+          .json({ message: "No collection data found with this id" });
+        return;
+      }
+      res.json(collectionDbData);
     })
-    .then(collectionDbData => {
-        if(!collectionDbData) {
-            res.status(404).json({ message: 'No collection data found with this id'});
-            return;
-        }
-        res.json(collectionDbData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
-router.delete('/:id',(req, res) =>{
-    Collection.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(collectionDbData => {
-        if (!collectionDbData) {
-            res.status(404).json({ message: 'No collection found with this id'});
-            return;
-        }
-        res.json(collectionDbData)
-    })
+router.delete("/:id", (req, res) => {
+  Collection.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then((collectionDbData) => {
+    if (!collectionDbData) {
+      res.status(404).json({ message: "No collection found with this id" });
+      return;
+    }
+    res.json(collectionDbData);
+  });
+});
 
-})
-
-router.delete('/:id',(req, res) =>{
-    Collection.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    .then(collectionDbData => {
-        if (!collectionDbData) {
-            res.status(404).json({ message: 'No collection found with this id'});
-            return;
-        }
-        res.json(collectionDbData)
-    })
-})
+router.delete("/:id", (req, res) => {
+  Collection.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then((collectionDbData) => {
+    if (!collectionDbData) {
+      res.status(404).json({ message: "No collection found with this id" });
+      return;
+    }
+    res.json(collectionDbData);
+  });
+});
 module.exports = router;
