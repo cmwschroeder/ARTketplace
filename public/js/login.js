@@ -3,6 +3,8 @@ const signupForm = document.querySelector("#signup-form");
 const signupBtn = document.querySelector("#create-btn");
 const loginBtn = document.querySelector("#login-btn");
 const mymodal2 = document.querySelector("#my-modal-2");
+const mymodal3 = document.querySelector("#mymodal3");
+const closeButton3 = document.querySelector("closeButton3");
 
 
 
@@ -67,10 +69,17 @@ closeButton.addEventListener("click", function() {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        alert(response.statusText);
+        //Display modal
+        mymodal3.classList.add("modal-open");
       }
     }
   };
+
+if(closeButton3) {
+  closeButton3.addEventListener("click", function() {
+  mymodal3.classList.remove("modal-open");
+});
+}
 
 document
   .querySelector('#main-login-btn')

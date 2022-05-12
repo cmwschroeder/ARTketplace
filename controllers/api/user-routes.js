@@ -9,17 +9,17 @@ router.post('/', async (req, res) => {
             name: req.body.username,
             password: req.body.password,
         });
-
+            console.log("Yessirrrrr========================================");
         //save the fact that we are logged in and the user id to session storage
         req.session.save(() => {
             req.session.userId = userData.id;
             req.session.loggedIn = true;
-      
+        
             res.status(200).json(userData);
         });
 
     } catch (err) {
-        console.log(err);
+        console.log(err + "------------------------------------------------------");
         res.status(500).json(err);
     }
 });
