@@ -42,6 +42,10 @@ router.get('/artpiece/:id', async (req, res) => {
 
     const artPiece = artData.get({ plain: true });
 
+    if(req.session.userId != artPiece.user_id) {
+        res.redirect('/');
+    }
+
     let hasCollection = false;
 
     if(artPiece.collection != null) {
