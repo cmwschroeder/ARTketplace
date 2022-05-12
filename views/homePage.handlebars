@@ -1,6 +1,6 @@
 <div
   class="hero min-h-screen"
-  style="background-image: url(/assets/ARTketplace.png);"
+  style="background-image: url(/assets/hero.png);"
 >
 </div>
 
@@ -8,9 +8,8 @@
   <button class="btn btn-primary m-2 w-1/3" id="Sort-button">
     <select class="select select-ghost w-full max-w-xs">
       <option disabled selected>Sort By...</option>
-      <option>Date</option>
-      <option>Lower to Higher</option>
-      <option>Higher to Low</option>
+      <option ${{artPieces}}>Lower to Higher</option>
+      <option ${{artPieces}}>Higher to Low</option>
     </select>
   </button>
   <button class="btn btn-secondary m-2 w-1/3" id="Filter-button">
