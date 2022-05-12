@@ -40,13 +40,16 @@ router.get('/artpiece/:id', async (req, res) => {
         include: [Collection],
     });
 
-    console.log(artData);
-
     const artPiece = artData.get({ plain: true });
 
-    for(let i = 0; i < collections.length; i++) {
-        if(collections[i].title === artPiece.collection.title) {
-            collections.splice(i, 1);
+    let hasCollection = false;
+
+    if(artPiece.collection != null) {
+        hasCollection = true;
+        for(let i = 0; i < collections.length; i++) {
+            if(collections[i].title === artPiece.collection.title) {
+                collections.splice(i, 1);
+            }
         }
     }
 
@@ -55,6 +58,7 @@ router.get('/artpiece/:id', async (req, res) => {
         collections: collections,
         newArt: false,
         artPiece: artPiece,
+        hasCollection: hasCollection,
         currCollection: artPiece.collection,
     });
 });

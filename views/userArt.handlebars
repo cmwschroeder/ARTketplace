@@ -71,7 +71,9 @@
                 <p class="mb-3">Or choose no collection to create new collection/be a standalone art piece</p>
                 <select class="select select-bordered w-full" id="which-collection">
                     {{#unless newArt}}
+                    {{#if hasCollection}}
                     <option>{{currCollection.title}}</option>
+                    {{/if}}
                     {{/unless}}
                     <option>No Collection</option>
                     {{#each collections as |collection|}}
