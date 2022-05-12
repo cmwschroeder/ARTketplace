@@ -6,8 +6,6 @@ router.get('/', async (req, res) => {
         where: {user_id: req.session.userId}
     });
 
-    console.log(req.session.userId);
-
     const artPieces = artData.map((art) => art.get({ plain: true}));
 
     res.render('profile', {
@@ -38,15 +36,24 @@ router.get('/artpiece/:id', async (req, res) => {
 
     const collections = collectionData.map((collection) => collection.get({ plain: true}));
 
-    const artData = await ArtPiece.findByPk(req.params.id);
+    const artData = await ArtPiece.findByPk(req.params.id, {
+        include: [Collection],
+    });
 
     const artPiece = artData.get({ plain: true });
+
+    for(let i = 0; i < collections.length; i++) {
+        if(collections[i].title === artPiece.collection.title) {
+            collections.splice(i, 1);
+        }
+    }
 
     res.render('userArt', {
         loggedIn: req.session.loggedIn,
         collections: collections,
-        newArt: true,
+        newArt: false,
         artPiece: artPiece,
+        currCollection: artPiece.collection,
     });
 });
 
