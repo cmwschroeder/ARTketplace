@@ -133,3 +133,10 @@ artButton.addEventListener('click', () => {
         collectionSection.classList.add('hidden');
     }
 });
+
+document.querySelectorAll(".edit-button").forEach((button) => {
+    button.addEventListener('click', (event) => {
+        artId = event.target.getAttribute("data-number");
+        document.location.replace('/profile/artpiece/' + artId);
+    });
+});

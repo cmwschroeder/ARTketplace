@@ -9,6 +9,8 @@ const forSaleEl = document.querySelector("#for-sale");
 
 //references to the buttons
 const addArtButton = document.querySelector("#add-art");
+const deleteArtButton = document.querySelector("#delete-art");
+const udpateArtButton = document.querySelector("#update-art");
 
 const addArt = async (req,res) => {
     const newCollection = newCollectionEl.value;
