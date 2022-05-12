@@ -112,13 +112,61 @@ router.post('/artpiece', async (req, res) => {
 });
 
 router.put('/artpiece/:id', async (req, res) => {
+    try {
+        if(req.body.hasCollection) {
+            const collectionData = await Collection.findAll({
+                where: {user_id: req.session.userId}
+            });
+        
+            const collections = collectionData.map((collection) => collection.get({ plain: true}));
+    
+            let collectionId = 0;
+    
+            for(let i = 0; i < collections.length; i++) {
+                if(collections[i].title === req.body.collection) {
+                    collectionId = collections[i].id;
+                }
+            }
+            if(collectionId === 0) {
+                const collectionData = await Collection.create({
+                    title: req.body.collection,
+                    user_id: req.session.userId,
+                })
+                const newCollection = collectionData.get({ plain: true});
+                collectionId = newCollection.id;
+            }
+            await ArtPiece.update({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+                collection_id: collectionId,
+            });
+        }
+        else {
+            await ArtPiece.update({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+                collection_id: null,
+            });
+        }
 
-
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 router.delete('/artpiece/:id', async (req, res) => {
 
-    
 });
 
 
