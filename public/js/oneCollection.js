@@ -1,17 +1,11 @@
+function getCollection() {
+  const allButtons = document.querySelectorAll(".viewButton");
 
-async function getCollection() {
-    const response = await fetch("/api/collections/:id", {
-        method: "GET",
-      });
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i].addEventListener("click", function () {
+      location.href = `/art/${i + 1}`;
+    });
+  }
 }
 
-
-
-
-const allButtons = document.querySelectorAll(".viewButton");
-
-for(let i=0; i<allButtons.length; i++) {
-    allButtons[i].addEventListener("click", function() {
-        location.href = `/collections/${theCollection.artPiece[i].id}`;
-    })
-}
+getCollection();
