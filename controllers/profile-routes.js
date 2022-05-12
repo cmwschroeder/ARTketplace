@@ -42,9 +42,14 @@ router.get('/artpiece/:id', async (req, res) => {
 
     const artPiece = artData.get({ plain: true });
 
-    for(let i = 0; i < collections.length; i++) {
-        if(collections[i].title === artPiece.collection.title) {
-            collections.splice(i, 1);
+    let hasCollection = false;
+
+    if(artPiece.collection != null) {
+        hasCollection = true;
+        for(let i = 0; i < collections.length; i++) {
+            if(collections[i].title === artPiece.collection.title) {
+                collections.splice(i, 1);
+            }
         }
     }
 
@@ -53,6 +58,7 @@ router.get('/artpiece/:id', async (req, res) => {
         collections: collections,
         newArt: false,
         artPiece: artPiece,
+        hasCollection: hasCollection,
         currCollection: artPiece.collection,
     });
 });
@@ -104,7 +110,7 @@ router.post('/artpiece', async (req, res) => {
                 price: req.body.price,
             });
         }
-
+        res.json("Art created");
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -112,13 +118,80 @@ router.post('/artpiece', async (req, res) => {
 });
 
 router.put('/artpiece/:id', async (req, res) => {
-
-
+    try {
+        if(req.body.hasCollection) {
+            const collectionData = await Collection.findAll({
+                where: {user_id: req.session.userId}
+            });
+        
+            const collections = collectionData.map((collection) => collection.get({ plain: true}));
+    
+            let collectionId = 0;
+    
+            for(let i = 0; i < collections.length; i++) {
+                if(collections[i].title === req.body.collection) {
+                    collectionId = collections[i].id;
+                }
+            }
+            if(collectionId === 0) {
+                const collectionData = await Collection.create({
+                    title: req.body.collection,
+                    user_id: req.session.userId,
+                })
+                const newCollection = collectionData.get({ plain: true});
+                collectionId = newCollection.id;
+            }
+            await ArtPiece.update({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+                collection_id: collectionId,
+            }, 
+            {
+                where: {
+                    id: req.params.id,
+                }
+            });
+        }
+        else {
+            await ArtPiece.update({
+                title: req.body.title,
+                description: req.body.description,
+                title: req.body.title,
+                user_id: req.session.userId,
+                image: req.body.imageLink,
+                is_for_sale: req.body.forSale,
+                price: req.body.price,
+                collection_id: null,
+            }, 
+            {
+                where: {
+                    id: req.params.id,
+                }
+            });
+        }
+        res.json("Art updated");
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 router.delete('/artpiece/:id', async (req, res) => {
-
-    
+    try {
+        await ArtPiece.destroy({
+            where: {
+                id: req.params.id,
+            }
+        });
+        res.json("Art deleted");
+    } catch(err) {
+        res.status(500).json(err);
+    }
 });
 
 
