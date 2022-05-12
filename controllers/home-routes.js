@@ -8,21 +8,21 @@ const {
 
 router.get('/', async (req, res) => {
     ArtPiece.findAll({
-            attributes: ['id', 'title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
-            include: [{
-                    model: Collection,
-                    attributes: ['id', 'title', 'user_id'],
-                    include: {
-                        model: User,
-                        attributes: ['id', 'name']
-                    }
-                },
-                {
-                    model: User,
-                    attributes: ['id', 'name']
-                }
-            ]
-        })
+        attributes: ['id', 'title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
+        include: [{
+            model: Collection,
+            attributes: ['id', 'title', 'user_id'],
+            include: {
+                model: User,
+                attributes: ['id', 'name']
+            }
+        },
+        {
+            model: User,
+            attributes: ['id', 'name']
+        }
+        ]
+    })
         .then(artPiecesData => {
             const artPosts = artPiecesData.map(artPiece => artPiece.get({
                 plain: true
@@ -84,13 +84,31 @@ router.get('/filter/:max/:min', async (req, res) => {
         where: {
             price: {
                 [Op.between]: [req.params.min, req.params.max]
-            }}
+            }
+        }
     })
-    const artPieces = artData.map((art) => art.get({ plain: true}))
+    const artPieces = artData.map((art) => art.get({ plain: true }))
     res.render('homePage', {
         artPieces,
-       loggedIn: req.session.loggedIn
+        loggedIn: req.session.loggedIn
     })
-})
+});
 
-        module.exports = router;
+router.get('/search/:title', async (req, res) => {
+    const artData = await ArtPiece.findAll({
+        where: {
+            title: req.params.title,
+        }
+    });
+
+    const artPieces = artData.map((art) => art.get({ plain: true }));
+
+    res.render('homePage', {
+        artPieces,
+        loggedIn: req.session.loggedIn,
+    });
+});
+
+
+
+module.exports = router;
