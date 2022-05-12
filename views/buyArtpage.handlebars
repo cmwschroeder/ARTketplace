@@ -2,12 +2,22 @@
     <div class="card w-96 bg-base-100 shadow-xl">
         <figure><img src={{artPiece.image}} alt="Art" /></figure>
         <div class="card-body">
-            <h2 class="card-title">{{artPiece.name}}</h2>
+            <h2 class="card-title" style="font-family: 'Poppins', sans-serif;">{{artPiece.title}}</h2>
             <div class="card-actions justify-end">
             </div>
         </div>
     </div>
-    <div>
+    <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title" style="font-family: 'Poppins', sans-serif;">{{{artPiece.collection.title}}}</h2>
+            <p style="font-family: 'Poppins', sans-serif;">Description: {{artPiece.description}}</p>
+            <h3 style="font-family: 'Poppins', sans-serif;">Price: ${{artPiece.price}}.00</h3>
+            <div class="card-actions justify-end">
+                <button class="btn btn-accent">BUY NOW</button>
+            </div>
+        </div>
+    </div>
+    {{!-- <div>
         <h2>{{{artPiece.collection.title}}}</h2>
 
         <p>{{artPiece.description}}</p>
@@ -16,7 +26,7 @@
     </div>
     <div>
         <button id="buy-btn" class="btn btn-accent">BUY NOW</button>
-    </div>
+    </div> --}}
 </div>
 
 
