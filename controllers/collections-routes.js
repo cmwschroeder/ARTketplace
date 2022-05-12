@@ -3,7 +3,7 @@ const { ArtPiece, Collection, User } = require("../models");
 const sequelize = require("../config/connection");
 
 //Get route for /collections
-router.get("/", async (req, res) => {
+router.get("/", (req, res) => {
   try {
     res.render("allCollection", { loggedIn: req.session.loggedIn });
   } catch (error) {
