@@ -7,7 +7,7 @@
       <p class="py-6" style="font-family: 'Poppins', sans-serif;">{{artPiece.description}}</p>
       <p class="py-6" style="font-family: 'Poppins', sans-serif;">${{artPiece.price}}</p>
       {{#if artPiece.is_for_sale}}
-      <button class="btn btn-accent">BUY NOW</button>
+      <button id="buy-btn" class="btn btn-accent">BUY NOW</button>
       {{else}}
       <button class="btn" disabled="disabled">NOT FOR SALE</button>
       {{/if}}
