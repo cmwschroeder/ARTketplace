@@ -124,7 +124,7 @@ const showCollections = async (event) => {
     document.querySelectorAll(".edit-button").forEach((button) => {
         button.addEventListener('click', (event) => {
             artId = event.target.getAttribute("data-number");
-            document.location.replace('/profile/artpiece/' + artId);
+            document.location.replace('/user/art/' + artId);
         });
     });
 };
@@ -146,6 +146,6 @@ artButton.addEventListener('click', () => {
 document.querySelectorAll(".edit-button").forEach((button) => {
     button.addEventListener('click', (event) => {
         artId = event.target.getAttribute("data-number");
-        document.location.replace('/profile/artpiece/' + artId);
+        document.location.replace('/user/art/' + artId);
     });
 });
