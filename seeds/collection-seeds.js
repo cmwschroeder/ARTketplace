@@ -6,11 +6,11 @@ const collectionData = [
         user_id: 2
     },
     {
-        title: 'favorites',
+        title: 'Favorites',
         user_id: 1  
     },
     {
-        title: 'paintings i hate',
+        title: 'Paintings I Hate',
         user_id: 2 
     },
         
