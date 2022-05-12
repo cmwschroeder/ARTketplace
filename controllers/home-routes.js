@@ -64,7 +64,7 @@ router.get('/sort/high', async (req, res) => {
         loggedIn: req.session.loggedIn
     })
 })
-//low to high route
+//low to high  sort route
 router.get('/sort/low', async (req, res) => {
     // find all artPieces and place form low to high base on price 
     const artData = await ArtPiece.findAll({
@@ -81,8 +81,9 @@ router.get('/sort/low', async (req, res) => {
         loggedIn: req.session.loggedIn
     })
 })
-
+// filter routes
 router.get('/filter/:max/:min', async (req, res) => {
+    // find all artpiece that fit it the price range that was selected
     const artData = await ArtPiece.findAll({
         where: {
             price: {
