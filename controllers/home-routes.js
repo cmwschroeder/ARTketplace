@@ -96,8 +96,6 @@ router.put("/art/:id", async (req, res) => {
 
 });
 // sort route for sorting
-// >>>>>>> c5fc5d9 (update homeroutes with filter and sort function)
-// >>>>>>> c279104 (conflict issue resolve)
 router.get('/sort', async (req, res) => {
     // sorting by high to low on price
     const artData = await ArtPiece.findAll({
