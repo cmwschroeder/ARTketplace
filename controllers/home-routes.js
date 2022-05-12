@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const {
     ArtPiece,
@@ -47,10 +48,25 @@ router.get('/login', async (req, res) => {
 
 })
 
-router.get('/sort', async (req, res) => {
+router.get('/sort/high', async (req, res) => {
     const artData = await ArtPiece.findAll({
         order: [
             ["price", "DESC"],
+            ["title", "ASC"],
+        ],
+    })
+    const artPieces = artData.map((art) => art.get({
+        plain: true
+    }));
+    res.render('homePage', {
+        artPieces,
+        loggedIn: req.session.loggedIn
+    })
+})
+router.get('/sort/low', async (req, res) => {
+    const artData = await ArtPiece.findAll({
+        order: [
+            ["price", "ASC"],
             ["title", "ASC"],
         ],
     })

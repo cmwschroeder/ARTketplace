@@ -15,8 +15,17 @@ artfilter.addEventListener('change', (event) => {
         min = 400
     } 
     if (max && min) {
-        
+        document.location.replace('/filter/'+max +'/' +min)
         
     }
 })
-            
+
+const artSort = document.querySelector('.sort-price')
+artSort.addEventListener('change', (event) => {
+    const sortValue = artSort.value
+    if (sortValue === 'Lower to Higher') {
+        document.location.replace('/sort/low')
+    } else if (sortValue === 'Higher to Lower') {
+        document.location.replace('/sort/high')
+    }
+})
