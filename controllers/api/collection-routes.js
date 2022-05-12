@@ -23,4 +23,17 @@ router.get('/', async (req,res) => {
     res.json(collections);
 });
 
+//Get api/collection/:id
+router.get("/:id", async (req, res) => {
+    const specificCollection = await Collection.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [User, ArtPiece]
+    });
+
+    const theCollection = specificCollection.get({plain: true});
+    res.json(theCollection);
+})
+
 module.exports = router;

@@ -1,5 +1,5 @@
 <h1 style="font-size: 30px; text-align: center; font-family: 'Poppins', sans-serif; padding-top: 2vw; text-transform:uppercase;" class="m-4">🌇  {{{theCollection.title}}}  🌃</h1>
-<p style="font-size: 20px; text-align: center; font-family: 'Poppins', sans-serif; margin-bottom: 1vw;">✨ Collection by <span style="text-transform: uppercase;" class="text-accent">{{{theCollection.user.name}}} ✨</span></p>
+<p style="font-size: 16px; text-align: center; font-family: 'Poppins', sans-serif; margin-bottom: 1vw;">✨ Collection by <span style="text-transform: uppercase;" class="text-accent">{{{theCollection.user.name}}} ✨</span></p>
 
 <div class="w-full h-full flex flex-row flex-wrap justify-around" id="art-section">
         {{#each theCollection.artPieces as |art|}}
@@ -17,9 +17,11 @@
                 <h2 class="card-title">{{art.title}}</h2>
                 <p class="text-accent">{{art.description}}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-secondary">View</button>
+                    <button class="btn btn-secondary text-accent viewButton" style="margin-bottom: 1vw; margin-left:1vw; background-color:rgb(15, 17, 31); border-color: rgb(15, 17, 31);">View</button>
                 </div>
             </div>
         </div>
         {{/each}}
     </div>
+
+    <script src="/js/oneCollection.js"></script>
