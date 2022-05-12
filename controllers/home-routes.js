@@ -47,8 +47,9 @@ router.get('/login', async (req, res) => {
     res.render('login');
 
 })
-
+// high to low sort route
 router.get('/sort/high', async (req, res) => {
+    // find all artPieces and place form high to low base on price 
     const artData = await ArtPiece.findAll({
         order: [
             ["price", "DESC"],
@@ -63,7 +64,9 @@ router.get('/sort/high', async (req, res) => {
         loggedIn: req.session.loggedIn
     })
 })
+//low to high route
 router.get('/sort/low', async (req, res) => {
+    // find all artPieces and place form low to high base on price 
     const artData = await ArtPiece.findAll({
         order: [
             ["price", "ASC"],
