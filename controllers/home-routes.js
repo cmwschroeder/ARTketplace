@@ -67,7 +67,7 @@ router.get('/filter/:max/:min', async (req, res) => {
     const artData = await ArtPiece.findAll({
         where: {
             price: {
-                [Op.between]: [req.params.min, req.params.max]
+                $between: [req.params.min, req.params.max]
             }}
     })
     const artPieces = artData.map((art) => art.get({ plain: true}))

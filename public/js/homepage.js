@@ -15,7 +15,7 @@ artfilter.addEventListener('change', (event) => {
         min = 400
     } 
     if (max && min) {
-        
+        document.location.replace('/filter/'+max +'/' +min)
         
     }
 })
