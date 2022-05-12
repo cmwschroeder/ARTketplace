@@ -8,7 +8,7 @@ const {
 
 router.get('/', async (req, res) => {
     ArtPiece.findAll({
-            attributes: ['title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
+            attributes: ['id', 'title', 'user_id', 'description', 'image', 'collection_id', 'is_for_sale', 'price'],
             include: [{
                     model: Collection,
                     attributes: ['id', 'title', 'user_id'],

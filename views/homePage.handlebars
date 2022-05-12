@@ -61,14 +61,23 @@
 >
   {{#each artPieces as |artPiece|}}
     <div class="card w-96 bg-base-100 shadow-xl m-3">
-      <figure><img class="h-48" src={{artPiece.image}} alt="Art" /></figure>
-      <div class="card-body">
-        <div class="w-full text-center">
-          <p class="text-3xl" style="color: white;">${{artPiece.price}}</p>
+            <figure><img class="h-48" src={{artPiece.image}} alt="Art Piece" /></figure>
+            <div class="card-body">
+                <div class="w-full text-center">
+                    <p class="text-3xl">${{artPiece.price}}</p>
+                    {{#if artPiece.is_for_sale}}
+                    <p class="text-xl">Up for sale</p>
+                    {{else}}
+                    <p class="text-xl">Not up for sale</p>
+                    {{/if}}
+                </div>
+                <h2 class="card-title">{{artPiece.title}}</h2>
+                <p>{{artPiece.description}}</p>
+                <div class="card-actions justify-end">
+                    <button class="btn btn-secondary edit-button" data-number={{artPiece.id}}>View</button>
+                </div>
+            </div>
         </div>
-        <h2 class="card-title" style="color: #f73197;">{{artPiece.title}}</h2>
-      </div>
-    </div>
   {{/each}}
 </div>
 <script src="/js/homepage.js"></script>

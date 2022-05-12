@@ -4,6 +4,10 @@ const sequelize = require("../config/connection");
 
 router.get('/:id', async (req, res) => {
     try {
+        if (!req.session.logged_in) {
+            res.redirect('/login');
+            return;
+        }
         const theArtPiece = await ArtPiece.findOne({
             where: { id: req.params.id },
             include: [User, Collection]
