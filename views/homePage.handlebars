@@ -8,12 +8,12 @@
   
     <select class="select select-ghost w-full max-w-xs" style="border-color: #f73197;">
       <option style="background-color: black; color:white;" disabled selected>Sort By...</option>
-      <option style="background-color: black; color:white;" ${{artPieces}}>Lower to Higher</option>
-      <option style="background-color: black; color:white;" ${{artPieces}}>Higher to Low</option>
+      <option style="background-color: black; color:white;" value="LtoH">Lower to Higher</option>
+      <option style="background-color: black; color:white;" value="HtoL">Higher to Low</option>
     </select>
   
   
-    <select class="select select-ghost w-full max-w-xs" style="border-color: #1183c1;">
+    <select class="filter-price select select-ghost w-full max-w-xs" style="border-color: #1183c1;">
       <option disabled selected>Filter</option>
       <option>$50-$200</option>
       <option>$200-$400</option>
@@ -71,3 +71,4 @@
     </div>
   {{/each}}
 </div>
+<script src="/js/homepage.js"></script>
