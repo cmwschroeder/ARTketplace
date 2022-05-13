@@ -1,3 +1,5 @@
+const logoutModal = document.querySelector("#logoutModal");
+
 const logout = async () => {
     console.log("GO FETCH -----");
     const response = await fetch('/api/users/logout', {
@@ -6,10 +8,19 @@ const logout = async () => {
     });
   
     if (response.ok) {
-      document.location.replace('/');
+      // display logged out modal
+      logoutModal.classList.add("modal-open");
     } else {
       alert(response.statusText);
     }
   };
+
+  const okButton = document.querySelector("#okButton");
+  if(okButton) {
+    okButton.addEventListener("click", function() {
+      logoutModal.classList.remove("modal-open");
+      document.location.replace('/');
+    })
+  }
   
   document.querySelector('#logout-button').addEventListener('click', logout);
