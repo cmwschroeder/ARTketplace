@@ -4,23 +4,23 @@
 >
 </div>
 
-<div class="w-11/12 mx-auto mt-10 mb-3 flex flex-row justify-around">
+<div class="w-11/12 mx-auto mt-10 mb-3 flex flex-col sm:flex-row justify-around">
   
-    <select class="sort-price select select-ghost w-full max-w-xs" style="border-color: #f73197;">
+    <select class="sort-price select select-ghost w-full max-w-xs mb-2" style="border-color: #f73197;">
       <option style="background-color: black; color:white;" disabled selected>Sort By...</option>
       <option style="background-color: black; color:white;" >Lower to Higher</option>
       <option style="background-color: black; color:white;" >Higher to Lower</option>
     </select>
   
   
-    <select class="filter-price select select-ghost w-full max-w-xs" style="border-color: #1183c1;">
+    <select class="filter-price select select-ghost w-full max-w-xs mb-2" style="border-color: #1183c1;">
       <option disabled selected>Filter</option>
       <option>$50-$200</option>
       <option>$200-$400</option>
       <option>$400-$800</option>
     </select>
 
-  <div class="form-control w-1/3">
+  <div class="form-control w-full sm:w-1/3 mb-2">
     <div class="input-group">
       <input
         type="text"
@@ -47,7 +47,7 @@
     </div>
   </div>
 
-  <button class="btn btn-primary" id="reset-search">Reset Search</button>
+  <button class="btn btn-primary mb-2" id="reset-search">Reset Search</button>
 </div>
 
 <div
