@@ -1,9 +1,11 @@
+{{!-- Hero image --}}
 <div
   class="hero min-h-screen"
   style="background-image: url(/assets/2.png);"
 >
 </div>
 
+{{!-- Filter options --}}
 <div class="w-11/12 mx-auto mt-10 mb-3 flex flex-col sm:flex-row justify-around">
   
     <select class="sort-price select select-ghost w-full max-w-xs mb-2" style="border-color: #f73197;">
@@ -47,30 +49,32 @@
     </div>
   </div>
 
-  <button class="btn btn-primary mb-2" id="reset-search">Reset Search</button>
+  <button class="btn btn-primary mb-2" id="reset-search" style="background-color:#1183c1; color:white; border-color:#1183c1">Reset Search</button>
 </div>
 
 <div
   class="w-full h-full flex flex-row flex-wrap justify-around"
   id="art-section"
 >
+
+{{!-- Generate cards dynamically --}}
   {{#each artPieces as |artPiece|}}
     <div class="card w-96 bg-base-100 shadow-xl m-3">
             <figure><img class="h-48" src={{artPiece.image}} alt="Art Piece" /></figure>
             <div class="card-body">
                 <div class="w-full text-center">
-                    <p class="text-3xl">${{artPiece.price}}</p>
+                    <p class="text-3xl" style="color:#1183c1;">${{artPiece.price}}</p>
                     {{#if artPiece.is_for_sale}}
-                    <p class="text-xl">Up for sale</p>
+                    <p class="text-xl" style="color: #f73197;">Up for sale</p>
                     {{else}}
-                    <p class="text-xl">Not up for sale</p>
+                    <p class="text-xl" style="color: #f73197;">Not up for sale</p>
                     {{/if}}
                 </div>
-                <h2 class="card-title">{{artPiece.title}}</h2>
-                <p>{{artPiece.description}}</p>
-                <p class="text-xl">Owned By: {{artPiece.user.name}}</p>
+                <h2 class="card-title" style="color: white;">{{artPiece.title}}</h2>
+                <p style="color: #f73197;">{{artPiece.description}}</p>
+                <p class="text-xl" style="color: white;">Owned By: {{artPiece.user.name}}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-secondary edit-button" data-number={{artPiece.id}}>View</button>
+                    <button class="btn btn-secondary edit-button" style="background-color: #4e148c; border-color: #4e148c; color:white" data-number={{artPiece.id}}>View</button>
                 </div>
             </div>
         </div>
