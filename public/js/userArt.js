@@ -6,6 +6,8 @@ const priceEl = document.querySelector("#price");
 const whichCollectionEl = document.querySelector("#which-collection");
 const newCollectionEl = document.querySelector("#new-collection");
 const forSaleEl = document.querySelector("#for-sale");
+const listingModal = document.querySelector("#listingModal");
+const collectionModal = document.querySelector("#collectionModal");
 
 //references to the buttons
 const addArtButton = document.querySelector("#add-art");
@@ -27,7 +29,7 @@ const addArt = async (event) => {
 
     //if they are both filled in then tell the user since they shouldn't both be filled in
     if(newCollection && (whichCollection != "No Collection")) {
-        alert("Only fill in one collection box, or neither if you don't want to add this to a collection");
+        collectionModal.classList.add("modal-open");
         return;
     }
 
@@ -72,8 +74,7 @@ const addArt = async (event) => {
     }
     //tell the user that all of the fields were not filled in so the art wasn't added
     else {
-        alert("One of the fields was not filled in, fill in all fields except optionally collections");
-        return;
+        listingModal.classList.add("modal-open");
     }
 
 };
@@ -86,7 +87,7 @@ const updateArt = async (event) => {
 
     //if they are both filled in then tell the user since they shouldn't both be filled in
     if(newCollection && (whichCollection != "No Collection")) {
-        alert("Only fill in one collection box, or neither if you don't want to add this to a collection");
+        collectionModal.classList.add("modal-open");
         return;
     }
 
@@ -134,8 +135,7 @@ const updateArt = async (event) => {
     }
     //tell the user that they didn't have all fields inputted so the art wasn't updated
     else {
-        alert("One of the fields was not filled in, fill in all fields except optionally collections");
-        return;
+        listingModal.classList.add("modal-open");
     }
 };
 
@@ -188,4 +188,18 @@ if(addArtButton) {
 if(deleteArtButton) {
     deleteArtButton.addEventListener('click', deleteArt);
     udpateArtButton.addEventListener('click', updateArt);
+}
+
+const acceptButton = document.querySelector("#acceptButton");
+if(acceptButton) {
+    acceptButton.addEventListener("click", function() {
+        listingModal.classList.remove("modal-open");
+    })
+}
+
+const cModalButton = document.querySelector("#cModalButton");
+if(cModalButton) {
+    cModalButton.addEventListener("click", function() {
+        collectionModal.classList.remove("modal-open");
+    })
 }
