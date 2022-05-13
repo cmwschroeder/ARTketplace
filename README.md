@@ -19,6 +19,8 @@ Overall, ARTketplace is a fun and inviting platform where art can be shared and 
 
 ## Application Preview ⭐
 
+![ Alt text](public/assets/ARTketplace%20(3).gif)
+
 ## Features ⚡️
 * Responsive Navbar
 * Account Creation
