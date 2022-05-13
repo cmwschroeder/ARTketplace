@@ -51,3 +51,7 @@ artSearch.addEventListener('click', (event) => {
         document.location.replace('/search/' + searchValue);
     }
 });
+
+document.querySelector("#reset-search").addEventListener('click', (event) => {
+    document.location.replace('/');
+});
