@@ -5,7 +5,7 @@ const {
     Collection,
     User
 } = require('../models');
-
+// get all artPieces to appear in the homepage
 router.get('/', async (req, res) => {
     try {
         const artPiecesData = await ArtPiece.findAll({
