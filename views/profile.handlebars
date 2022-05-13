@@ -2,6 +2,8 @@
     <div class="w-full text-center">
         <p class="text-5xl mt-10 mb-5" style="color: white; font-family: 'Fredoka One', cursive;">🦄  My Profile  🦄</p>
     </div>
+
+    {{!-- Sub navigation-bar --}}
     <div class="w-11/12 mx-3 mt-10 mb-3 flex flex-row justify-around">
         <button class="btn btn-primary m-2 w-1/3" id="art-button" style="background-color: #1183c1; border-color:#1183c1; color:white;">View Art Pieces</button>
         <a class="btn btn-secondary m-2 w-1/3" href="/user/art" style="background-color: #f73197; border-color:#fc5bad; color:white;">Create Listing</a>
@@ -10,23 +12,24 @@
 
     <div class="divider w-full"></div> 
 
+{{!-- Dynamically generated cards --}}
     <div class="w-full h-full flex flex-row flex-wrap justify-around" id="art-section">
         {{#each artPieces as |artPiece|}}
         <div class="card w-96 bg-base-100 shadow-xl m-3">
             <figure><img class="h-48" src={{artPiece.image}} alt="Art Piece" /></figure>
             <div class="card-body">
                 <div class="w-full text-center">
-                    <p class="text-3xl text-accent">${{artPiece.price}}</p>
+                    <p class="text-3xl text-accent" style="color:#f73197;">${{artPiece.price}}</p>
                     {{#if artPiece.is_for_sale}}
-                    <p class="text-xl">Up for sale</p>
+                    <p class="text-xl" style="color: white;">Up for sale</p>
                     {{else}}
-                    <p class="text-xl">Not up for sale</p>
+                    <p class="text-xl" style="color: white;">Not up for sale</p>
                     {{/if}}
                 </div>
-                <h2 class="card-title">{{artPiece.title}}</h2>
-                <p>{{artPiece.description}}</p>
+                <h2 class="card-title" style="color: #1183c1;">{{artPiece.title}}</h2>
+                <p style="color: white;">{{artPiece.description}}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-secondary edit-button" data-number={{artPiece.id}}>Edit</button>
+                    <button class="btn btn-secondary edit-button" style="color: white; background-color:#4e148c; border-color:#4e148c" data-number={{artPiece.id}}>Edit</button>
                 </div>
             </div>
         </div>
