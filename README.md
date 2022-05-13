@@ -21,6 +21,12 @@ Overall, ARTketplace is a fun and inviting platform where art can be shared and 
 ## Application Preview ⭐
 
 ## Features ⚡️
+* Responsive Navbar
+* Account Creation
+* Listing Art Pieces
+* Creating Collections
+* Ability to Edit Listings
+* Login/Logout Responsiveness
 
 ## Usage 💡
 
