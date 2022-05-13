@@ -6,6 +6,7 @@ const priceEl = document.querySelector("#price");
 const whichCollectionEl = document.querySelector("#which-collection");
 const newCollectionEl = document.querySelector("#new-collection");
 const forSaleEl = document.querySelector("#for-sale");
+const listingModal = document.querySelector("#listingModal");
 
 //references to the buttons
 const addArtButton = document.querySelector("#add-art");
@@ -72,8 +73,7 @@ const addArt = async (event) => {
     }
     //tell the user that all of the fields were not filled in so the art wasn't added
     else {
-        alert("One of the fields was not filled in, fill in all fields except optionally collections");
-        return;
+        listingModal.classList.add("modal-open");
     }
 
 };
@@ -134,8 +134,7 @@ const updateArt = async (event) => {
     }
     //tell the user that they didn't have all fields inputted so the art wasn't updated
     else {
-        alert("One of the fields was not filled in, fill in all fields except optionally collections");
-        return;
+        listingModal.classList.add("modal-open");
     }
 };
 
@@ -188,4 +187,11 @@ if(addArtButton) {
 if(deleteArtButton) {
     deleteArtButton.addEventListener('click', deleteArt);
     udpateArtButton.addEventListener('click', updateArt);
+}
+
+const acceptButton = document.querySelector("#acceptButton");
+if(acceptButton) {
+    acceptButton.addEventListener("click", function() {
+        listingModal.classList.remove("modal-open");
+    })
 }
